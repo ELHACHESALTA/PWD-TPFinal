@@ -106,8 +106,8 @@
                 $proDeshabilitado = ", '" . $this -> getProdeshabilitado() . "')";
             }
             $sql = "INSERT INTO producto (pronombre, prodetalle, procantstock, proprecio, prodeshabilitado) 
-            VALUES (" . $this -> getPronombre() .
-                ",'" . $this -> getProdetalle() . 
+            VALUES ('" . $this -> getPronombre() .
+                "','" . $this -> getProdetalle() . 
                 "'," . $this -> getProcantstock() . 
                 ", " . $this->getProPrecio() . 
                 $proDeshabilitado;
@@ -128,13 +128,13 @@
             $respuesta = false;
             $base = new BaseDatos();
             if ($this -> getProdeshabilitado() == null) {
-                $proDeshabilitado = ", medeshabilitado = NULL";
+                $proDeshabilitado = ", prodeshabilitado = NULL";
             } else {
-                $proDeshabilitado = ", medeshabilitado = '" . $this -> getProdeshabilitado() . "'";
+                $proDeshabilitado = ", prodeshabilitado = '" . $this -> getProdeshabilitado() . "'";
             }
             $sql = "UPDATE producto 
-            SET pronombre = " . $this -> getPronombre() . 
-            ", prodetalle = '" . $this -> getProdetalle() .
+            SET pronombre = '" . $this -> getPronombre() . 
+            "', prodetalle = '" . $this -> getProdetalle() .
             "', procantstock = " . $this->getProcantstock() . 
             ", proprecio = " . $this->getProPrecio() . 
             $proDeshabilitado .
