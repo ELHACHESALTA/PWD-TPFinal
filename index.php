@@ -1,0 +1,1 @@
+<script>location.href = "vista/paginas/inicio.php"</script>

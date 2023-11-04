@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+*{
+    font-family: 'Roboto', sans-serif;
+}
+
+nav {
+    z-index: 100;
+}
+
+footer {
+    z-index: 200;
+}
+
+.banner-image{
+    background-image: url(../img/banner-img.jpg);
+    background-size: cover;
+}
+
+#logoPrincipal {
+    margin-top: -5px;
+    width: 30px;
+}
