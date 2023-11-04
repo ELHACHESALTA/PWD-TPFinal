@@ -1,20 +1,20 @@
 <?php
 
-    class AbmUsuariorol{
+    class AbmUsuarioRol{
 
         /**
          * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto.
          * @param array $param
-         * @return usuariorol
+         * @return UsuarioRol
          */
         private function cargarObjeto($param) {
             $obj = null;
             if (array_key_exists('idusuario',$param) and array_key_exists('idrol',$param)) {
-                $obj = new usuariorol();
-                $objUsuario = new usuario();
+                $obj = new UsuarioRol();
+                $objUsuario = new Usuario();
                 $objUsuario->setIdusuario($param["idusuario"]);
                 $objUsuario->cargar();
-                $objRol = new rol();
+                $objRol = new Rol();
                 $objRol->setIdrol($param["idrol"]);
                 $objRol->cargar();
                 $obj -> setear($objUsuario, $objRol);
@@ -25,16 +25,16 @@
         /**
          * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto que son claves.
          * @param array $param
-         * @return usuariorol
+         * @return UsuarioRol
          */
         private function cargarObjetoConClave($param) {
             $obj = null;
             if ( isset($param['idusuario']) && isset($param['idrol']) ) {
-                $obj = new usuariorol();
-                $objUsuario = new usuario();
+                $obj = new UsuarioRol();
+                $objUsuario = new Usuario();
                 $objUsuario->setIdusuario($param["idusuario"]);
                 $objUsuario->cargar();
-                $objRol = new rol();
+                $objRol = new Rol();
                 $objRol->setIdrol($param["idrol"]);
                 $objRol->cargar();
                 $obj -> setear($objUsuario, $objRol);
@@ -119,7 +119,7 @@
                     $where .= " and idrol =" . $param['idrol'];
                 }
             }
-            $objUsuarioRol = new usuariorol();
+            $objUsuarioRol = new UsuarioRol();
             $arreglo = $objUsuarioRol -> listar($where);
             return $arreglo;
         }

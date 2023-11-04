@@ -5,12 +5,12 @@
         /**
          * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto.
          * @param array $param
-         * @return rol
+         * @return Rol
          */
         private function cargarObjeto($param) {
             $obj = null;
             if (array_key_exists('idrol',$param) and array_key_exists('rodescripcion',$param)) {
-                $obj = new rol();
+                $obj = new Rol();
                 $obj -> setear($param['idrol'], $param['rodescripcion']);
             }
             return $obj;
@@ -19,12 +19,12 @@
         /**
          * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto que son claves.
          * @param array $param
-         * @return rol
+         * @return Rol
          */
         private function cargarObjetoConClave($param) {
             $obj = null;
             if ( isset($param['idrol']) ) {
-                $obj = new rol();
+                $obj = new Rol();
                 $obj -> setear($param['idrol'], null);
             }
             return $obj;
@@ -104,7 +104,7 @@
                     $where .= " and rodescripcion ='" . $param['rodescripcion'] . "'";
                 }
             }
-            $objRol = new rol();
+            $objRol = new Rol();
             $arreglo = $objRol -> listar($where);
             return $arreglo;
         }

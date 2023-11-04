@@ -1,6 +1,6 @@
 <?php
 
-    class usuario {
+    class Usuario {
 
         private $idusuario;
         private $usnombre;
@@ -90,11 +90,16 @@
         public function insertar() {
             $respuesta = false;
             $base = new BaseDatos();
+            if ($this -> getUsdeshabilitado() == null) {
+                $usDeshabilitado = "', NULL)";
+            } else {
+                $usDeshabilitado = "','" . $this -> getUsdeshabilitado() . "')";
+            }
             $sql = "INSERT INTO usuario (usnombre, uspass, usmail, usdeshabilitado) 
             VALUES ('" . $this -> getUsnombre() .
-                ",'" . $this -> getUspass() . 
+                "','" . $this -> getUspass() . 
                 "','" . $this -> getUsmail() .
-                "','" . $this -> getUsdeshabilitado() . "')";
+                $usDeshabilitado; 
             if ($base->Iniciar()){
                 if ($elid = $base -> Ejecutar($sql)){
                     $this -> setIdusuario($elid);
@@ -111,7 +116,7 @@
         public function modificar() {
             $respuesta = false;
             $base = new BaseDatos();
-            if ($this -> getUsdeshabilitado() == 'null') {
+            if ($this -> getUsdeshabilitado() == null) {
                 $usDeshabilitado = "', usdeshabilitado = NULL";
             } else {
                 $usDeshabilitado = "', usdeshabilitado = '" . $this -> getUsdeshabilitado() . "'";
@@ -157,7 +162,7 @@
             if ($respuesta > -1){
                 if ($respuesta > 0){
                     while ($row = $base -> Registro()){
-                        $obj = new usuario();
+                        $obj = new Usuario();
                         $obj -> setear($row["idusuario"], $row["usnombre"], $row["uspass"], $row["usmail"], $row["usdeshabilitado"]);
                         array_push($arreglo, $obj);
                     }

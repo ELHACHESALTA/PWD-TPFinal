@@ -1,27 +1,27 @@
 <?php
 
-    class UsuarioRol {
+    class MenuRol {
 
-        private $objUsuario;
+        private $objMenu;
         private $objRol;
         private $mensajeoperacion;
 
         public function __construct() {
-            $this -> objUsuario = new Usuario();
+            $this -> objMenu = new Menu();
             $this -> objRol = new Rol();
             $this -> mensajeoperacion = "";
         }
 
-        public function setear($objUsuarioS, $objRolS) {
-            $this -> setObjUsuario($objUsuarioS);
+        public function setear($objMenuS, $objRolS) {
+            $this -> setObjMenu($objMenuS);
             $this -> setObjRol($objRolS);
         }
 
-        public function getObjUsuario() {
-            return $this -> objUsuario;
+        public function getObjMenu() {
+            return $this -> objMenu;
         }
-        public function setObjUsuario($nuevoObjUsuario) {
-            $this -> objUsuario = $nuevoObjUsuario;
+        public function setObjMenu($nuevoObjMenu) {
+            $this -> objMenu = $nuevoObjMenu;
         }
 
         public function getObjRol() {
@@ -41,24 +41,24 @@
         public function cargar() {
             $respuesta = false;
             $base = new BaseDatos();
-            $sql = "SELECT * FROM usuariorol WHERE idusuario = " . $this->getObjUsuario()->getIdusuario() . " AND idrol = " . $this->getObjRol()->getIdrol();
+            $sql = "SELECT * FROM menurol WHERE idmenu = " . $this->getObjMenu()->getIdmenu() . " AND idrol = " . $this->getObjRol()->getIdrol();
             if ($base -> Iniciar()) {
                 $res = $base -> Ejecutar($sql);
                 if ($res > -1) {
                     if ($res > 0) {
                         $row = $base -> Registro();
-                        $objUsuarioS = new Usuario();
-                        $objUsuarioS->setIdusuario($row["idusuario"]);
-                        $objUsuarioS->cargar();
+                        $objMenuS = new Menu();
+                        $objMenuS->setIdmenu($row["idmenu"]);
+                        $objMenuS->cargar();
                         $objRolS = new Rol();
                         $objRolS->setIdrol($row["idrol"]);
                         $objRolS->cargar();
-                        $this -> setear($objUsuarioS, $objRolS);
+                        $this -> setear($objMenuS, $objRolS);
                         $respuesta = true;
                     }
                 }
             } else {
-                $this -> setmensajeoperacion("UsuarioRol->listar: " . $base -> getError());
+                $this -> setmensajeoperacion("MenuRol->listar: " . $base -> getError());
             }
             return $respuesta;
         }
@@ -66,22 +66,22 @@
         public function insertar() {
             $resp = false;
             $base = new BaseDatos();
-            $sql = "INSERT INTO usuariorol (idusuario, idrol)
-                VALUES (" . $this -> getObjUsuario()->getIdusuario() .
+            $sql = "INSERT INTO menurol (idmenu, idrol)
+                VALUES (" . $this -> getObjMenu()->getIdmenu() .
                 "," . $this -> getObjRol()->getIdrol() . ")";
             if ($base->Iniciar()) {
                 if ($base->Ejecutar($sql)) {
                     $resp = true;
                 } else {
-                    $this->setmensajeoperacion("UsuarioRol->insertar: " . $base->getError());
+                    $this->setmensajeoperacion("MenuRol->insertar: " . $base->getError());
                 }
             } else {
-                $this->setmensajeoperacion("UsuarioRol->insertar: " . $base->getError());
+                $this->setmensajeoperacion("MenuRol->insertar: " . $base->getError());
             }
             return $resp;
         }
 
-        //En funcion modificar de la clase usuariorol: no se debería poder modificar ninguno
+        //En funcion modificar de la clase MenuRol: no se debería poder modificar ninguno
         //de los dos atributos, no? ya que ambos atributos forman parte de la clave primaria
         /*
         public function modificar() {
@@ -108,15 +108,15 @@
         public function eliminar() {
             $respuesta = false;
             $base = new BaseDatos();
-            $sql = "DELETE FROM usuariorol WHERE idusuario = " . $this->getObjUsuario()->getIdusuario() . " AND idrol = " . $this->getObjRol()->getIdrol();
+            $sql = "DELETE FROM menurol WHERE idmenu = " . $this->getObjMenu()->getIdmenu() . " AND idrol = " . $this->getObjRol()->getIdrol();
             if ($base -> Iniciar()){
                 if ($base -> Ejecutar($sql)){
                     $respuesta = true;
                 } else {
-                    $this->setmensajeoperacion("UsuarioRol->eliminar: " . $base -> getError());
+                    $this->setmensajeoperacion("MenuRol->eliminar: " . $base -> getError());
                 }
             } else {
-                $this->setmensajeoperacion("UsuarioRol->eliminar: " . $base -> getError());
+                $this->setmensajeoperacion("MenuRol->eliminar: " . $base -> getError());
             }
             return $respuesta;
         }
@@ -124,7 +124,7 @@
         public function listar($parametro = "") { 
             $arreglo = array();
             $base = new BaseDatos();
-            $sql = "SELECT * FROM usuariorol ";
+            $sql = "SELECT * FROM menurol ";
             if ($parametro != "") {
                 $sql .= 'WHERE ' . $parametro;
             }
@@ -132,19 +132,19 @@
             if ($res > -1) {
                 if ($res > 0) {
                     while ($row = $base->Registro()) {
-                        $obj = new UsuarioRol();
-                        $objUsuarioS = new Usuario();
-                        $objUsuarioS->setIdusuario($row["idusuario"]);
-                        $objUsuarioS->cargar();
+                        $obj = new MenuRol();
+                        $objMenuS = new Menu();
+                        $objMenuS->setIdmenu($row["idmenu"]);
+                        $objMenuS->cargar();
                         $objRolS = new Rol();
                         $objRolS->setIdrol($row["idrol"]);
                         $objRolS->cargar();
-                        $obj->setear($objUsuarioS, $objRolS);
+                        $obj->setear($objMenuS, $objRolS);
                         array_push($arreglo, $obj);
                     }
                 }
             } else {
-                $this->setmensajeoperacion("UsuarioRol->listar: " . $base->getError());
+                $this->setmensajeoperacion("MenuRol->listar: " . $base->getError());
             }
             return $arreglo;
         }

@@ -62,7 +62,7 @@ class Session {
     public function getRol(){
         $listaRoles = null;
         if ($this -> validar()) {
-            $objAbmUsuarioRol = new AbmUsuariorol();
+            $objAbmUsuarioRol = new AbmUsuarioRol();
             if ($listaUsuarioRol = $objAbmUsuarioRol->buscar($_SESSION['idusuario'])){
                 $listaRoles = $listaUsuarioRol;
             }

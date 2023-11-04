@@ -5,12 +5,12 @@
         /**
          * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto.
          * @param array $param
-         * @return usuario
+         * @return Usuario
          */
         private function cargarObjeto($param) {
             $obj = null;
             if (array_key_exists('idusuario',$param) and array_key_exists('usnombre',$param) and array_key_exists('uspass',$param) and array_key_exists('usmail',$param) and array_key_exists('usdeshabilitado',$param)) {
-                $obj = new usuario();
+                $obj = new Usuario();
                 $obj -> setear($param['idusuario'], $param['usnombre'], $param['uspass'], $param['usmail'], $param["usdeshabilitado"]);
             }
             return $obj;
@@ -19,12 +19,12 @@
         /**
          * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto que son claves.
          * @param array $param
-         * @return usuario
+         * @return Usuario
          */
         private function cargarObjetoConClave($param) {
             $obj = null;
             if ( isset($param['idusuario']) ) {
-                $obj = new usuario();
+                $obj = new Usuario();
                 $obj -> setear($param['idusuario'], null, null, null, null);
             }
             return $obj;
@@ -113,7 +113,7 @@
                     $where .= " and usdeshabilitado ='" . $param['usdeshabilitado'] . "'";
                 }
             }
-            $objUsuario = new usuario();
+            $objUsuario = new Usuario();
             $arreglo = $objUsuario -> listar($where);
             return $arreglo;
         }
