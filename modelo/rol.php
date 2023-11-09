@@ -61,7 +61,7 @@
             $respuesta = false;
             $base = new BaseDatos();
             $sql = "INSERT INTO rol (rodescripcion) 
-            VALUES ('" . $this -> getRoescripcion() . "')";
+            VALUES ('" . $this -> getRodescripcion() . "')";
             if ($base->Iniciar()){
                 if ($elid = $base -> Ejecutar($sql)){
                     $this -> setIdrol($elid);
@@ -79,7 +79,7 @@
             $respuesta = false;
             $base = new BaseDatos();
             $sql = "UPDATE rol 
-            SET rodescripcion = '" . $this -> getRoescripcion() .
+            SET rodescripcion = '" . $this -> getRodescripcion() .
             "' WHERE idrol = " . $this -> getIdrol();
             if ($base -> Iniciar()){
                 if ($base -> Ejecutar($sql)){

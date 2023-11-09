@@ -87,7 +87,7 @@
                             <a href="#" class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown">
                             <?php 
                                     if (isset($arregloMenuPadre)) {
-                                        if ($arregloMenuPadre[0] -> getMedeshabilitado() == "0000-00-00 00:00:00") { // Si menu padre no está deshabilitado
+                                        if ($arregloMenuPadre[0] -> getMedeshabilitado() == NULL) { // Si menu padre no está deshabilitado
                                             echo $arregloMenuPadre[0] -> getMenombre();
                                         } else {
                                             echo "Sin opciones";
@@ -98,11 +98,11 @@
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <?php 
                                         foreach ($arregloMenu as $menu) {
-                                            if ($menu -> getObjMenu() -> getMedeshabilitado() == "0000-00-00 00:00:00") {
+                                            if ($menu -> getObjMenu() -> getMedeshabilitado() == NULL) {
                                                 if ( ($menu -> getObjMenu() -> getMedescripcion() != "") && ($menu -> getObjMenu() -> getObjMenu() != NULL)) {
                                                     $enlace = $menu -> getObjMenu() -> getMedescripcion().".php";
                                                     $idrol = $rolActivo[0] -> getIdrol();
-                                                    echo "<li><button class='dropdown-item' type='button'><a class='text-white link-underline link-underline-opacity-0' href='" . $enlace . "?idrol=" . $rolActivo[0] -> getIdrol() . "' class='enlaceSinEstiloYPadding'>" . $menu -> getObjMenu() -> getMenombre() . "</a></button></li>";
+                                                    echo "<li><button class='dropdown-item' type='button'><a class='text-white link-underline link-underline-opacity-0' href='" . $enlace . "?idrol=" . $rolActivo[0] -> getIdrol() . "' >" . $menu -> getObjMenu() -> getMenombre() . "</a></button></li>";
                                                 }
                                             }
                                         }
