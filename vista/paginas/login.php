@@ -1,11 +1,11 @@
 <?php
     include_once("../../configuracion.php");
     $tituloPagina = "Login";
-    $sesionInicial = new Session();
-    if ($sesionInicial -> validar()) {
+    $sesionLogin = new Session();
+    if ($sesionLogin -> validar()) {
         include_once("../estructura/encabezadoPrivado.php");
     } else {
-        $sesionInicial -> cerrar();
+        $sesionLogin -> cerrar();
         include_once("../estructura/encabezadoPublico.php");
     }
 ?>

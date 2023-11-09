@@ -24,7 +24,7 @@
             $this -> idrol = $nuevoIdrol;
         }
 
-        public function getRoescripcion() {
+        public function getRodescripcion() {
             return $this -> rodescripcion;
         }
         public function setRodescripcion($nuevaRodescripcion) {

@@ -1,13 +1,13 @@
 <?php
-include_once("../../configuracion.php");
-$tituloPagina = "Acerca De";
-$sesionInicial = new Session();
-if ($sesionInicial -> validar()) {
-    include_once("../estructura/encabezadoPrivado.php");
-} else {
-    $sesionInicial -> cerrar();
-    include_once("../estructura/encabezadoPublico.php");
-}
+    include_once("../../configuracion.php");
+    $tituloPagina = "Acerca De";
+    $sesionInicial = new Session();
+    if ($sesionInicial -> validar()) {
+        include_once("../estructura/encabezadoPrivado.php");
+    } else {
+        $sesionInicial -> cerrar();
+        include_once("../estructura/encabezadoPublico.php");
+    }
 ?>
 
 <a class="btn btn-lg btn-dark text-center text-white float-start position-absolute d-flex justify-content-start mt-2" href="inicio.php"><i class="bi bi-arrow-90deg-left"></i></a>

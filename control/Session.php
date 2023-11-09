@@ -64,7 +64,9 @@ class Session {
         if ($this -> validar()) {
             $objAbmUsuarioRol = new AbmUsuarioRol();
             if ($listaUsuarioRol = $objAbmUsuarioRol->buscar($_SESSION['idusuario'])){
-                $listaRoles = $listaUsuarioRol;
+                for ($i = 0; $i < count($listaUsuarioRol); $i++) {
+                    $listaRoles[$i] = $listaUsuarioRol[$i] -> getObjRol();
+                }
             }
         }
         return $listaRoles;

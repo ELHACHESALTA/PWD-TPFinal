@@ -1,6 +1,13 @@
 <?php
-$tituloPagina = "Tienda de Sillones";
-include_once("../estructura/encabezadoPublico.php");
+    include_once("../../configuracion.php");
+    $tituloPagina = "Tienda de Sillones";
+    $sesionInicial = new Session();
+    if ($sesionInicial -> validar()) {
+        include_once("../estructura/encabezadoPrivado.php");
+    } else {
+        $sesionInicial -> cerrar();
+        include_once("../estructura/encabezadoPublico.php");
+    }
 ?>
 
 <p class="lead">Encuentra estilos nacionales e importados exclusivos y al mejor precio.</p>
