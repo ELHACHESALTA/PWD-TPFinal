@@ -50,6 +50,7 @@
         public function alta($param){
             $resp = false;
             $param['idusuario'] = null;
+            $param['uspass'] = md5($param['uspass']);
             $objUsuario = $this->cargarObjeto($param);
             if ($objUsuario != null and $objUsuario->insertar()) {
                 $resp = true;

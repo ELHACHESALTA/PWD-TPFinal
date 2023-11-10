@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title><?php echo $tituloPagina ?></title>
 
-        <link rel="stylesheet" href="../../util/jquery-easyui-1.10.17/themes/default/easyui.css">
+        <link rel="stylesheet" href="../../util/jquery-easyui-1.10.17/themes/black/easyui.css">
         <link rel="stylesheet" href="../../util/jquery-easyui-1.10.17/themes/icon.css">
         <script src="../../util/jquery-easyui-1.10.17/jquery.min.js"></script>
         <script src="../../util/jquery-easyui-1.10.17/jquery.easyui.min.js"></script>
@@ -57,7 +57,7 @@
                     }
                 }
             } else { // Si no existen roles para la sesión actual se cierra la sesión.
-                header("Location:../paginas/cerrarSesion.php");
+                header("Location:../accion/cerrarSesion.php");
             }
             $enlaceInicio = "paginaSegura.php?idrol=" . $rolActivo[0] -> getIdrol();
         ?>
