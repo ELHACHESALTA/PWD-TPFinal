@@ -116,7 +116,6 @@
             if ($parametro != ""){
                 $sql .= "WHERE " . $parametro;
             }
-            echo $sql;
             $respuesta = $base -> Ejecutar($sql);
             if ($respuesta > -1){
                 if ($respuesta > 0){
