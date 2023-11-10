@@ -51,8 +51,8 @@
 <!-- Tabla para gestionar Menú -->
 
 <br>
-<h2>Gestion de Menues</h2>
-<p>Pulse los botones para realizar las acciones que desee.</p>
+<h1 class="display-5 pb-3 fw-bold">Gestión de Menúes</h1>
+<p class="lead">Pulse los botones para realizar las acciones que desee.</p>
 
 <table id="dgMenu" class="easyui-datagrid" style="width:700px"
         url="../accion/administrador/listarMenues.php"
@@ -105,8 +105,8 @@
 <!-- Tabla para gestionar MenuRol -->
 
 <br>
-<h2>Gestion de MenuRol</h2>
-<p>Pulse los botones para realizar las acciones que desee.</p>
+<h1 class="display-5 pb-3 fw-bold">Gestion de relaciones Menú-Rol</h1>
+<p class="lead">Pulse los botones para realizar las acciones que desee.</p>
 
 <table id="dgMenuRol" class="easyui-datagrid" style="width:700px"
         url="../accion/administrador/listarMenuRoles.php"
@@ -114,16 +114,16 @@
         rownumbers="true" fitColumns="true" singleSelect="true">
     <thead>
         <tr>
-            <th field="idmenu" width="25">Id Menu</th>
-            <th field="menombre" width="25">Nombre del Menu</th>
+            <th field="idmenu" width="25">Id Menú</th>
+            <th field="menombre" width="25">Nombre del Menú</th>
             <th field="idrol" width="25">Id Rol</th>
-            <th field="rodescripcion" width="25d">Descripcion</th>
+            <th field="rodescripcion" width="25d">Descripción</th>
         </tr>
     </thead>
 </table>
 <div id="toolbarMenuRol">
-    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newMenuRol()">Nuevo UsuarioRol</a>
-    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyMenuRol()">Eliminar UsuarioRol</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newMenuRol()">Nueva relación Menú-Rol</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyMenuRol()">Eliminar relación Menú-Rol</a>
 </div>
 
 <div id="dlgMenuRol" class="easyui-dialog" style="width:400px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlgMenuRol-buttons'">
@@ -147,8 +147,8 @@
 <!-- Tabla para gestionar Roles -->
 
 <br>
-<h2>Gestion de Roles</h2>
-<p>Pulse los botones para realizar las acciones que desee.</p>
+<h1 class="display-5 pb-3 fw-bold">Gestión de Roles</h1>
+<p class="lead">Pulse los botones para realizar las acciones que desee.</p>
 
 <table id="dg3" class="easyui-datagrid" style="width:700px"
         url="../accion/administrador/listarRoles.php"

@@ -51,7 +51,7 @@
 <!-- Tabla para gestionar Usuario -->
 
 <a class="btn btn-lg btn-dark text-center text-white float-start position-absolute d-flex justify-content-start mt-2" href="inicio.php"><i class="bi bi-arrow-90deg-left"></i></a>
-<h1 class="display-5 pb-3 fw-bold">Gestion de Usuarios</h1>
+<h1 class="display-5 pb-3 fw-bold">Gestión de Usuarios</h1>
 <p class="lead">Pulse los botones para realizar las acciones que desee.</p>
 
 <table id="dg" class="easyui-datagrid" style="width:700px"
@@ -105,7 +105,7 @@
 <!-- Tabla para gestionar UsuarioRol -->
 
 <br>
-<h1 class="display-5 pb-3 fw-bold">Gestion de UsuariosRol</h1>
+<h1 class="display-5 pb-3 fw-bold">Gestión de relaciones Usuarios-Rol</h1>
 <p class="lead">Pulse los botones para realizar las acciones que desee.</p>
 
 <table id="dg2" class="easyui-datagrid" style="width:700px"
@@ -122,8 +122,8 @@
     </thead>
 </table>
 <div id="toolbar2">
-    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUsuarioRol()">Nuevo UsuarioRol</a>
-    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUsuarioRol()">Eliminar UsuarioRol</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUsuarioRol()">Nueva relación Usuario-Rol</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUsuarioRol()">Eliminar relación Usuario-Rol</a>
 </div>
 
 <div id="dlg2" class="easyui-dialog" style="width:400px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg2-buttons'">
@@ -147,7 +147,7 @@
 <!-- Tabla para gestionar Roles -->
 
 <br>
-<h1 class="display-5 pb-3 fw-bold">Gestion de Roles</h1>
+<h1 class="display-5 pb-3 fw-bold">Gestión de Roles</h1>
 <p class="lead">Pulse los botones para realizar las acciones que desee.</p>
 
 <table id="dg3" class="easyui-datagrid" style="width:700px"

@@ -321,3 +321,34 @@ function destroyMenuRol(){
         });
     }
 }
+
+function actLog() {
+    var row = $('#dgActLog').datagrid('getSelected');
+    if (row) {
+        $('#dlgActLog').dialog('open').dialog('center').dialog('setTitle','Editar Usuario');
+        $('#fmActLog').form('load',row);
+        url = 'accion/cliente/editarUsuario.php';
+    }
+}
+
+function saveActLog(){
+    $('#fmActLog').form('submit',{
+        url: url,
+        iframe: false,
+        onSubmit: function(){
+            return $(this).form('validate');
+        },
+        success: function(result){
+            var result = eval('('+result+')');
+            if (result.errorMsg){
+                $.messager.show({
+                    title: 'Error',
+                    msg: result.errorMsg
+                });
+            } else {
+                $('#dlgActLog').dialog('close');        // close the dialog
+                $('#dgActLog').datagrid('reload');    // reload the user data
+            }
+        }
+    });
+}
