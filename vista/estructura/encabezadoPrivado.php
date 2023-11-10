@@ -34,32 +34,31 @@
             }
             // Obtengo los roles correspondientes a la sesión actual.
             $roles = $sesionActual -> getRol();
-            if ($roles != NULL) {
-                if (count($roles) > 0) {
-                    $objRol = new AbmRol;
-                    if (isset($datos["idrol"])){ // Si tengo un idrol mediante url
-                        $rolActivo = $objRol -> buscar(['idrol' => $datos["idrol"]]);
-                    } else { // Sino asigno por defecto el idrol con mayor jerarquía
-                        $rolActivo = $objRol -> buscar(['idrol' => $roles[0] -> getIdrol()]);
-                    }
-                    $objAbmMenuRol = new AbmMenuRol();
-                    // Obtengo un arreglo de menuRol
-                    $arregloMenu = $objAbmMenuRol -> buscar(['idrol' => $rolActivo[0] -> getIdrol()]);
-                    if (count($arregloMenu) > 0){
-                        $ObjAbmMenu = new AbmMenu();
-                        // Obtengo el arreglo del menú padre (es decir de roles).
-                        $arregloMenuPadre = $ObjAbmMenu -> buscar(['idmenu' => $rolActivo[0] -> getIdrol()]);
-                        if (count($arregloMenuPadre) > 0){
-                            $idMenuPadre = $arregloMenuPadre[0] -> getIdmenu();
-                            // Obtengo el arreglo del submenu de hijos del menú padre (es decir opciones de cada rol).
-                            $arregloSubMenu = $ObjAbmMenu -> buscar(['idpadre' => $idMenuPadre]);
-                        }
+            $rolActivo = NULL;
+            if (count($roles) > 0) {
+                if (isset($datos["idrol"])){ // Si tengo un idrol mediante url
+                    $sesionActual -> establecerRolActivo($datos["idrol"]);
+                    $rolActivo = $sesionActual -> obtenerRolActivo();
+                } else { // Sino asigno por defecto el idrol con mayor jerarquía
+                    $rolActivo = $sesionActual -> obtenerRolActivo();
+                }
+                $objAbmMenuRol = new AbmMenuRol();
+                // Obtengo un arreglo de menuRol
+                $arregloMenu = $objAbmMenuRol -> buscar(['idrol' => $rolActivo -> getIdrol()]);
+                if (count($arregloMenu) > 0){
+                    $ObjAbmMenu = new AbmMenu();
+                    // Obtengo el arreglo del menú padre (es decir de roles).
+                    $arregloMenuPadre = $ObjAbmMenu -> buscar(['idmenu' => $rolActivo -> getIdrol()]);
+                    if (count($arregloMenuPadre) > 0){
+                        $idMenuPadre = $arregloMenuPadre[0] -> getIdmenu();
+                        // Obtengo el arreglo del submenu de hijos del menú padre (es decir opciones de cada rol).
+                        $arregloSubMenu = $ObjAbmMenu -> buscar(['idpadre' => $idMenuPadre]);
                     }
                 }
             } else { // Si no existen roles para la sesión actual se cierra la sesión.
                 header("Location:../accion/cerrarSesion.php");
             }
-            $enlaceInicio = "paginaSegura.php?idrol=" . $rolActivo[0] -> getIdrol();
+            $enlaceInicio = "paginaSegura.php?idrol=" . $rolActivo -> getIdrol();
         ?>
 
         <!-- Barra Superior INICIO -->
@@ -82,7 +81,7 @@
                 <div class="navbar-collapse collapse" id="navbarNav">
                     <ul class="navbar-nav align-items-end">
                         <li class="nav-item">
-                            <div class="text-white">ROL: <?php echo $rolActivo[0] -> getRodescripcion();?></div>
+                            <div class="text-white">ROL: <?php echo $rolActivo -> getRodescripcion();?></div>
                         </li>
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown">
@@ -102,8 +101,8 @@
                                             if ($menu -> getObjMenu() -> getMedeshabilitado() == NULL) {
                                                 if ( ($menu -> getObjMenu() -> getMedescripcion() != "") && ($menu -> getObjMenu() -> getObjMenu() != NULL)) {
                                                     $enlace = $menu -> getObjMenu() -> getMedescripcion().".php";
-                                                    $idrol = $rolActivo[0] -> getIdrol();
-                                                    echo "<li><button class='dropdown-item' type='button'><a class='text-white link-underline link-underline-opacity-0' href='" . $enlace . "?idrol=" . $rolActivo[0] -> getIdrol() . "' >" . $menu -> getObjMenu() -> getMenombre() . "</a></button></li>";
+                                                    $idrol = $rolActivo -> getIdrol();
+                                                    echo "<li><button class='dropdown-item' type='button'><a class='text-white link-underline link-underline-opacity-0' href='" . $enlace . "?idrol=" . $rolActivo -> getIdrol() . "' >" . $menu -> getObjMenu() -> getMenombre() . "</a></button></li>";
                                                 }
                                             }
                                         }

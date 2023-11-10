@@ -1,13 +1,51 @@
 <?php
     include_once("../../configuracion.php");
     $tituloPagina = "Gestion de Menues";
-    $sesionLogin = new Session();
-    if ($sesionLogin -> validar()) {
-        include_once("../estructura/encabezadoPrivado.php");
-    } else {
-        $sesionLogin -> cerrar();
-        include_once("../estructura/encabezadoPublico.php");
+    include_once("../estructura/encabezadoPrivado.php");
+
+    if (isset($arregloSubMenu)) {
+        $i = 0;
+        $subMenuDeshabilitado = false;
+        while (($i < count($arregloSubMenu)) && (!$subMenuDeshabilitado)) {
+            $subMenuActual = $arregloSubMenu[$i];
+            // Verifica que el submenú se encuentre habilitado.
+            if ($subMenuActual -> getMedeshabilitado() != NULL) {
+                $subMenuDeshabilitado = true;
+            }
+            $i++;
+        }
+        $i = 0;
+        $existeSubMenu = false;
+        while (($i < count($arregloSubMenu)) && (!$existeSubMenu)) {
+            $subMenuActual = $arregloSubMenu[$i];
+            // Verifica si el submenú existe.
+            if ($subMenuActual -> getMedescripcion() == "gestionMenues") {
+                $existeSubMenu = true;
+            }
+            $i++;
+        }
     }
+    // Verifica que el usuario tenga los permisos de rol correspondientes.
+    $permiso = false;
+    foreach ($arregloMenu as $menu){
+        if (($menu -> getObjMenu() -> getMedescripcion() == "gestionMenues") && ($menu -> getObjMenu() -> getMedeshabilitado() == NULL) && $rolActivo -> getIdrol() == 1) {
+            $permiso = true;
+        }
+    }
+    if (!$permiso) {
+        echo "<a class='btn btn-lg btn-dark text-center text-white float-start position-absolute d-flex justify-content-start mt-2' href='inicio.php'><i class='bi bi-arrow-90deg-left'></i></a>";
+        echo "<br><br><br><h1 class='display-5 pb-3 fw-bold'>No puede gestionar menues ya que no tiene los permisos necesarios en su rol.</h1>";
+    // Verifica que el menu padre no se encuentre deshabilitado
+    } elseif (($rolActivo -> getIdrol() == 1) && (!isset($arregloMenuPadre))) {
+        echo "<a class='btn btn-lg btn-dark text-center text-white float-start position-absolute d-flex justify-content-start mt-2' href='inicio.php'><i class='bi bi-arrow-90deg-left'></i></a>";
+        echo "<br><br><br><h1 class='display-5 pb-3 fw-bold'>No puede gestionar menues ya que la página se encuentra deshabilitada en una jerarquía superior del menú.</h1>";
+    } elseif ($subMenuDeshabilitado) {
+        echo "<a class='btn btn-lg btn-dark text-center text-white float-start position-absolute d-flex justify-content-start mt-2' href='inicio.php'><i class='bi bi-arrow-90deg-left'></i></a>";
+        echo "<br><br><br><h1 class='display-5 pb-3 fw-bold'>No puede gestionar menues ya que la página se encuentra deshabilitada.</h1>";
+    } elseif (!$existeSubMenu) {
+        echo "<a class='btn btn-lg btn-dark text-center text-white float-start position-absolute d-flex justify-content-start mt-2' href='inicio.php'><i class='bi bi-arrow-90deg-left'></i></a>";
+        echo "<br><br><br><h1 class='display-5 pb-3 fw-bold'>No puede gestionar menues ya que la página no existe.</h1>";
+    } else {
 ?>
 
 <!-- Tabla para gestionar Menú -->
@@ -16,7 +54,7 @@
 <h2>Gestion de Menues</h2>
 <p>Pulse los botones para realizar las acciones que desee.</p>
 
-<table id="dgMenu" class="easyui-datagrid" style="width:80%"
+<table id="dgMenu" class="easyui-datagrid" style="width:700px"
         url="../accion/administrador/listarMenues.php"
         toolbar="#toolbarMenu"
         rownumbers="true" fitColumns="true" singleSelect="true">
@@ -51,7 +89,7 @@
             <label for="idpadre">Id padre:</label>
             <input name="idpadre" class="easyui-textbox" required="true" style="width:100%">
         </div>
-      <!--  <div>
+        <!--  <div>
             <input type="hidden" name="medeshabilitado" value="medeshabilitado">
         </div>  -->
         <div>
@@ -150,5 +188,6 @@
 <div style="height: 76px;"></div>
 
 <?php
+    }
     include_once("../estructura/pie.php");
 ?>

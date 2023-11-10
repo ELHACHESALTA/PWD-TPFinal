@@ -76,6 +76,29 @@ class Session {
     public function cerrar(){
         session_destroy();
     }
+
+    public function obtenerRolActivo() {
+        $objAbmRol = new AbmRol();
+        $rol = NULL;
+        if (isset($_SESSION['rolactivo'])) {
+            $rol = $objAbmRol -> buscar(["idrol" => $_SESSION['rolactivo']]);
+            $rol = $rol[0];
+        }
+        return $rol;
+    }
+
+    public function establecerRolActivo($idrol){
+        $resp = false;
+        $roles = $this -> getRol();
+        $i = 0;
+        while ($i < count($roles) && !$resp){
+            if ($roles[$i] -> getIdrol() == $idrol){
+                $_SESSION['rolactivo'] = $idrol;
+                $resp = true;
+            }
+            $i++;
+        }
+    }
 }
 
 ?>

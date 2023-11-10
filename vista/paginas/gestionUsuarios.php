@@ -1,20 +1,58 @@
 <?php
     include_once("../../configuracion.php");
     $tituloPagina = "Gestion de Usuarios";
-    $sesionLogin = new Session();
-    if ($sesionLogin -> validar()) {
-        include_once("../estructura/encabezadoPrivado.php");
-    } else {
-        $sesionLogin -> cerrar();
-        include_once("../estructura/encabezadoPublico.php");
+    include_once("../estructura/encabezadoPrivado.php");
+
+    if (isset($arregloSubMenu)) {
+        $i = 0;
+        $subMenuDeshabilitado = false;
+        while (($i < count($arregloSubMenu)) && (!$subMenuDeshabilitado)) {
+            $subMenuActual = $arregloSubMenu[$i];
+            // Verifica que el submenú se encuentre habilitado.
+            if ($subMenuActual -> getMedeshabilitado() != NULL) {
+                $subMenuDeshabilitado = true;
+            }
+            $i++;
+        }
+        $i = 0;
+        $existeSubMenu = false;
+        while (($i < count($arregloSubMenu)) && (!$existeSubMenu)) {
+            $subMenuActual = $arregloSubMenu[$i];
+            // Verifica si el submenú existe.
+            if ($subMenuActual -> getMedescripcion() == "gestionUsuarios") {
+                $existeSubMenu = true;
+            }
+            $i++;
+        }
     }
+    // Verifica que el usuario tenga los permisos de rol correspondientes.
+    $permiso = false;
+    foreach ($arregloMenu as $menu){
+        if (($menu -> getObjMenu() -> getMedescripcion() == "gestionUsuarios") && ($menu -> getObjMenu() -> getMedeshabilitado() == NULL) && $rolActivo -> getIdrol() == 1) {
+            $permiso = true;
+        }
+    }
+    if (!$permiso) {
+        echo "<a class='btn btn-lg btn-dark text-center text-white float-start position-absolute d-flex justify-content-start mt-2' href='inicio.php'><i class='bi bi-arrow-90deg-left'></i></a>";
+        echo "<br><br><br><h1 class='display-5 pb-3 fw-bold'>No puede gestionar usuarios ya que no tiene los permisos necesarios en su rol.</h1>";
+    // Verifica que el menu padre no se encuentre deshabilitado
+    } elseif (($rolActivo -> getIdrol() == 1) && (!isset($arregloMenuPadre))) {
+        echo "<a class='btn btn-lg btn-dark text-center text-white float-start position-absolute d-flex justify-content-start mt-2' href='inicio.php'><i class='bi bi-arrow-90deg-left'></i></a>";
+        echo "<br><br><br><h1 class='display-5 pb-3 fw-bold'>No puede gestionar usuarios ya que la página se encuentra deshabilitada en una jerarquía superior del menú.</h1>";
+    } elseif ($subMenuDeshabilitado) {
+        echo "<a class='btn btn-lg btn-dark text-center text-white float-start position-absolute d-flex justify-content-start mt-2' href='inicio.php'><i class='bi bi-arrow-90deg-left'></i></a>";
+        echo "<br><br><br><h1 class='display-5 pb-3 fw-bold'>No puede gestionar usuarios ya que la página se encuentra deshabilitada.</h1>";
+    } elseif (!$existeSubMenu) {
+        echo "<a class='btn btn-lg btn-dark text-center text-white float-start position-absolute d-flex justify-content-start mt-2' href='inicio.php'><i class='bi bi-arrow-90deg-left'></i></a>";
+        echo "<br><br><br><h1 class='display-5 pb-3 fw-bold'>No puede gestionar usuarios ya que la página no existe.</h1>";
+    } else {
 ?>
 
 <!-- Tabla para gestionar Usuario -->
 
-<br>
-<h2>Gestion de Usuarios</h2>
-<p>Pulse los botones para realizar las acciones que desee.</p>
+<a class="btn btn-lg btn-dark text-center text-white float-start position-absolute d-flex justify-content-start mt-2" href="inicio.php"><i class="bi bi-arrow-90deg-left"></i></a>
+<h1 class="display-5 pb-3 fw-bold">Gestion de Usuarios</h1>
+<p class="lead">Pulse los botones para realizar las acciones que desee.</p>
 
 <table id="dg" class="easyui-datagrid" style="width:700px"
         url="../accion/administrador/listarUsuarios.php"
@@ -64,12 +102,11 @@
     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width:90px">Cancelar</a>
 </div>
 
-
 <!-- Tabla para gestionar UsuarioRol -->
 
 <br>
-<h2>Gestion de UsuarioRol</h2>
-<p>Pulse los botones para realizar las acciones que desee.</p>
+<h1 class="display-5 pb-3 fw-bold">Gestion de UsuariosRol</h1>
+<p class="lead">Pulse los botones para realizar las acciones que desee.</p>
 
 <table id="dg2" class="easyui-datagrid" style="width:700px"
         url="../accion/administrador/listarUsuarioRol.php"
@@ -107,12 +144,11 @@
     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg2').dialog('close')" style="width:90px">Cancelar</a>
 </div>
 
-
 <!-- Tabla para gestionar Roles -->
 
 <br>
-<h2>Gestion de Roles</h2>
-<p>Pulse los botones para realizar las acciones que desee.</p>
+<h1 class="display-5 pb-3 fw-bold">Gestion de Roles</h1>
+<p class="lead">Pulse los botones para realizar las acciones que desee.</p>
 
 <table id="dg3" class="easyui-datagrid" style="width:700px"
         url="../accion/administrador/listarRoles.php"
@@ -150,5 +186,6 @@
 <div style="height: 76px;"></div>
 
 <?php
+    }
     include_once("../estructura/pie.php");
 ?>
