@@ -66,7 +66,7 @@
             $resp = false;
             if ($this -> seteadosCamposClaves($param)) {
                 $objUsuario = $this -> cargarObjetoConClave($param);
-                if ($objUsuario != null and $objUsuario -> eliminar()) {
+                if ($objUsuario != null and $objUsuario -> cambiarEstado()) {
                     $resp = true;
                 }
             }

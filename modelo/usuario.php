@@ -139,12 +139,16 @@
             return $respuesta;
         }
 
-        public function eliminar() {
+        public function cambiarEstado() {
             $respuesta = false;
             $this -> cargar();
             date_default_timezone_set('America/Argentina/Cordoba');
-            $fechaBaja = date('Y-m-d H:i:s');
-            $this -> setUsdeshabilitado($fechaBaja);
+            if ($this->getUsdeshabilitado() == null){
+                $fechaBaja = date('Y-m-d H:i:s');
+                $this -> setUsdeshabilitado($fechaBaja);
+            } else {
+                $this->setUsdeshabilitado(null);
+            }
             if ($this -> modificar()) {
                 $respuesta = true;
             }

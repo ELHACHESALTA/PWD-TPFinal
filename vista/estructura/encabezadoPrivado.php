@@ -9,10 +9,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title><?php echo $tituloPagina ?></title>
 
-        <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
-        <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
-        <script type="text/javascript" src="easyui/jquery.min.js"></script>
-        <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+        <link rel="stylesheet" href="../../util/jquery-easyui-1.10.17/themes/default/easyui.css">
+        <link rel="stylesheet" href="../../util/jquery-easyui-1.10.17/themes/icon.css">
+        <script src="../../util/jquery-easyui-1.10.17/jquery.min.js"></script>
+        <script src="../../util/jquery-easyui-1.10.17/jquery.easyui.min.js"></script>
+        <script type="text/javascript" src="../js/jeasyui.js"></script>
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
