@@ -23,7 +23,7 @@
     <thead>
         <tr>
             <th field="idusuario" width="15">Id</th>
-            <th field="usnombre" width="60">Nombre de usuario</th>
+            <th field="usnombre" width="60">Nombre</th>
             <th field="uspass" width="120">Contraseña</th>
             <th field="usmail" width="55">Email</th>
             <th field="usdeshabilitado" width="50">Estado</th>
@@ -40,13 +40,16 @@
     <form id="fm" method="post" novalidate style="margin:0;padding:20px 50px">
         <h3>Informacion del usuario</h3>
         <div style="margin-bottom:10px">
-            <input name="usnombre" class="easyui-textbox" required="true" label="Nombre de Usuario:" style="width:100%">
+            <label for="usnombre">Nombre:</label>
+            <input name="usnombre" class="easyui-textbox" required="true" style="width:100%">
         </div>
         <div style="margin-bottom:10px">
-            <input name="uspass" class="easyui-textbox" required="true" label="Contraseña:" style="width:100%">
+            <label for="uspass">Contraseña:</label>
+            <input name="" class="easyui-textbox" required="true" style="width:100%">
         </div>
         <div style="margin-bottom:10px">
-            <input name="usmail" class="easyui-textbox" required="true" validType="email" label="Email:" style="width:100%">
+            <label for="usmail">Email:</label>
+            <input name="usmail" class="easyui-textbox" required="true" validType="email" style="width:100%">
         </div>
         <div>
             <input type="hidden" name="usdeshabilitado" value="usdeshabilitado">
@@ -90,10 +93,12 @@
     <form id="fm2" method="post" novalidate style="margin:0;padding:20px 50px">
         <h3>Informacion del usuarioRol</h3>
         <div style="margin-bottom:10px">
-            <input name="idusuario" class="easyui-textbox" required="true" label="Id Usuario:" style="width:100%">
+            <label for="idusuario">Id Usuario:</label>
+            <input name="idusuario" class="easyui-textbox" required="true"style="width:100%">
         </div>
         <div style="margin-bottom:10px">
-            <input name="idrol" class="easyui-textbox" required="true" label="Id Rol:" style="width:100%">
+            <label for="idrol">Id Rol:</label>
+            <input name="idrol" class="easyui-textbox" required="true" style="width:100%">
         </div>
     </form>
 </div>
@@ -130,7 +135,8 @@
     <form id="fm3" method="post" novalidate style="margin:0;padding:20px 50px">
         <h3>Informacion del Rol</h3>
         <div style="margin-bottom:10px">
-            <input name="rodescripcion" class="easyui-textbox" required="true" label="Descripción:" style="width:100%">
+            <label for="rodescripcion">Descripción:</label>
+            <input name="rodescripcion" class="easyui-textbox" required="true" style="width:100%">
         </div>
         <div>
             <input type="hidden" name="idrol" value="idrol">

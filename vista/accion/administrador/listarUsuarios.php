@@ -2,7 +2,7 @@
 include_once "../../../configuracion.php";
 $objAbmUsuario = new AbmUsuario();
 $listaUsuarios = $objAbmUsuario->buscar(null);
-$arreglo_salida = array();
+$arregloSalida = array();
 foreach ($listaUsuarios as $elemento) {
     $nuevoElemento['idusuario'] = $elemento->getIdusuario();
     $nuevoElemento['usnombre'] = $elemento->getUsnombre();
@@ -13,6 +13,6 @@ foreach ($listaUsuarios as $elemento) {
     } else {
     $nuevoElemento['usdeshabilitado'] = "Deshabilitado (" . $elemento->getUsdeshabilitado() . ")";
     }
-    array_push($arreglo_salida, $nuevoElemento);
+    array_push($arregloSalida, $nuevoElemento);
 }
-echo json_encode($arreglo_salida);
+echo json_encode($arregloSalida);

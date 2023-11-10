@@ -193,3 +193,10 @@ function destroyRol(){
         });
     }
 }
+
+// FUNCIONES PARA LA GESTION DE MENUES
+function newMenu() {
+    $('#dlg').dialog('open').dialog('center').dialog('setTitle','Nuevo Menu');
+    $('#fm').form('clear');
+    url = '../accion/administrador/altaMenues.php';
+}
