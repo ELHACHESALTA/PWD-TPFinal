@@ -14,7 +14,7 @@
     <p>Pulse los botones para realizar las acciones que desee.</p>
     
     <table id="dg" title="Mis usuarios" class="easyui-datagrid" style="width:700px;height:250px"
-            url="../accion/listarUsuarios.php"
+            url="../accion/administrador/listarUsuarios.php"
             toolbar="#toolbar" pagination="true"
             rownumbers="true" fitColumns="true" singleSelect="true">
         <thead>
@@ -65,7 +65,7 @@
     <p>Pulse los botones para realizar las acciones que desee.</p>
     
     <table id="dg2" title="UsuarioRol" class="easyui-datagrid" style="width:700px;height:250px"
-            url="../accion/listarUsuarioRol.php"
+            url="../accion/administrador/listarUsuarioRol.php"
             toolbar="#toolbar2" pagination="true"
             rownumbers="true" fitColumns="true" singleSelect="true">
         <thead>
@@ -105,7 +105,7 @@
     <p>Pulse los botones para realizar las acciones que desee.</p>
     
     <table id="dg3" title="Rol" class="easyui-datagrid" style="width:700px;height:250px"
-            url="../accion/listarRoles.php"
+            url="../accion/administrador/listarRoles.php"
             toolbar="#toolbar3" pagination="true"
             rownumbers="true" fitColumns="true" singleSelect="true">
         <thead>
@@ -136,6 +136,7 @@
         <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveRol()" style="width:90px">Guardar</a>
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg3').dialog('close')" style="width:90px">Cancelar</a>
     </div>
+    <div style="height: 76px;"></div>
 
 <?php
     include_once("../estructura/pie.php");

@@ -1,5 +1,5 @@
 <?php 
-include_once "../../configuracion.php";
+include_once "../../../configuracion.php";
 $datos = data_submitted();
 $objAbmUsuarioRol = new AbmUsuarioRol();
 if($objAbmUsuarioRol->baja($datos)){

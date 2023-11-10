@@ -7,6 +7,6 @@
         header('Location:../paginas/paginaSegura.php');   
     } else {
         //$objSession->cerrar();
-        header('Location:../paginas/login.php');
+        header('Location:../paginas/login.php?error=Usuario y/o contraseña incorrecto');
     }
 ?>

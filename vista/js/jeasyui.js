@@ -4,14 +4,14 @@ var url;
 function newUser(){
     $('#dlg').dialog('open').dialog('center').dialog('setTitle','Nuevo Usuario');
     $('#fm').form('clear');
-    url = '../accion/altaUsuarios.php';
+    url = '../accion/administrador/altaUsuarios.php';
 }
 function editUser(){
     var row = $('#dg').datagrid('getSelected');
     if (row){
         $('#dlg').dialog('open').dialog('center').dialog('setTitle','Editar Usuario');
         $('#fm').form('load',row);
-        url = '../accion/editarUsuarios.php';
+        url = '../accion/administrador/editarUsuarios.php';
     }
 }
 function saveUser(){
@@ -41,7 +41,7 @@ function destroyUser(){
         $.messager.confirm('Confirmar','Cambiar el estado del Usuario?',function(r){
             if (r){
                 $('#fm').form('load',row);
-                url = '../accion/bajaUsuarios.php';
+                url = '../accion/administrador/bajaUsuarios.php';
                 $('#fm').form('submit',{
                     url: url,
                     iframe: false,
@@ -70,7 +70,7 @@ function destroyUser(){
 function newUsuarioRol(){
     $('#dlg2').dialog('open').dialog('center').dialog('setTitle','Nuevo UsuarioRol');
     $('#fm2').form('clear');
-    url = '../accion/altaUsuarioRol.php';
+    url = '../accion/administrador/altaUsuarioRol.php';
 }
 
 function saveUsuarioRol(){
@@ -101,7 +101,7 @@ function destroyUsuarioRol(){
         $.messager.confirm('Confirmar','Estás seguro que quieres eliminar el UsuarioRol definitivamente?',function(r){
             if (r){
                 $('#fm2').form('load',row);
-                url = '../accion/bajaUsuarioRol.php';
+                url = '../accion/administrador/bajaUsuarioRol.php';
                 $('#fm2').form('submit',{
                     url: url,
                     iframe: false,
@@ -130,7 +130,7 @@ function destroyUsuarioRol(){
 function newRol(){
     $('#dlg3').dialog('open').dialog('center').dialog('setTitle','Nuevo Rol');
     $('#fm3').form('clear');
-    url = '../accion/altaRol.php';
+    url = '../accion/administrador/altaRol.php';
 }
 
 function saveRol(){
@@ -160,7 +160,7 @@ function editRol(){
     if (row){
         $('#dlg3').dialog('open').dialog('center').dialog('setTitle','Editar Rol');
         $('#fm3').form('load',row);
-        url = '../accion/editarRol.php';
+        url = '../accion/administrador/editarRol.php';
     }
 }
 
@@ -170,7 +170,7 @@ function destroyRol(){
         $.messager.confirm('Confirmar','Estás seguro que quieres eliminar el Rol definitivamente?',function(r){
             if (r){
                 $('#fm3').form('load',row);
-                url = '../accion/bajaRol.php';
+                url = '../accion/administrador/bajaRol.php';
                 $('#fm3').form('submit',{
                     url: url,
                     iframe: false,

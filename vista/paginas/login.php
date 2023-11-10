@@ -8,6 +8,7 @@
         $sesionLogin -> cerrar();
         include_once("../estructura/encabezadoPublico.php");
     }
+    $datos = data_submitted();
 ?>
 
 <a class="btn btn-lg btn-dark text-center text-white float-start position-absolute d-flex justify-content-start" href="../paginas/inicio.php"><i class="bi bi-arrow-90deg-left"></i></a>
@@ -15,6 +16,17 @@
 <div class="d-flex justify-content-center">
     <div class="w-50">
         <form method="post" action="../accion/verificarLogin.php" class="needs-validation p-5 border border-dark" novalidate>
+            <div style="color:red">
+                <?php
+                    $mensaje = "";
+                    if (isset($datos['error'])) {
+                        $mensaje = $datos['error'];
+                    }
+                    if (!$mensaje == "") {
+                        echo $mensaje;
+                    }
+                ?>
+            </div>
             <div class="form-group">
                 <label for="usnombre">Nombre de Usuario:</label>
                 <input id="usnombre" name="usnombre" class="form-control" type="text" required pattern="^[a-zA-Z][a-zA-Z0-9]*$">

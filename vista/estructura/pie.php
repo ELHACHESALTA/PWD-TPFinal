@@ -7,7 +7,7 @@
         <!-- Banner de Fondo FIN -->
 
         <!-- Pie INICIO -->
-        <footer class="bg-dark bg-gradient text-center text-lg-start position-absolute bottom-0 w-100">
+        <footer class="bg-dark bg-gradient text-center text-lg-start fixed-bottom">
             <div class="text-center text-white my-1">
                 <ul class="navbar-nav d-flex flex-row justify-content-center">
                         <li class="nav-item mx-1">

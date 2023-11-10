@@ -1,5 +1,5 @@
 <?php 
-include_once "../../configuracion.php";
+include_once "../../../configuracion.php";
 $objAbmUsuario = new AbmUsuario();
 $listaUsuarios = $objAbmUsuario->buscar(null);
 $arreglo_salida = array();

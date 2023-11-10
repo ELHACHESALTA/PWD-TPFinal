@@ -1,5 +1,5 @@
 <?php 
-include_once "../../configuracion.php";
+include_once "../../../configuracion.php";
 $objAbmRol = new AbmRol();
 $listaRoles = $objAbmRol->buscar(null);
 $arreglo_salida = array();

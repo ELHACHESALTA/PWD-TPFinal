@@ -63,7 +63,7 @@
         ?>
 
         <!-- Barra Superior INICIO -->
-        <nav class="navbar bg-dark bg-gradient navbar-dark position-absolute top-0 w-100">
+        <nav class="navbar bg-dark bg-gradient navbar-dark fixed-top">
             <div class="container-fluid">
                 <a href="../paginas/inicio.php" class="navbar-brand fw-bold"><img id="logoPrincipal" src="../img/favicon.png" alt="Logo Tienda de Sillones"> Tienda de Sillones</a>
 
@@ -124,7 +124,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="../paginas/cerrarSesion.php">Cerrar Sesión</a>
+                            <a class="nav-link text-white" href="../accion/cerrarSesion.php">Cerrar Sesión</a>
                         </li>
                     </ul>
                 </div>

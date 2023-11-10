@@ -1,8 +1,9 @@
 <?php 
-include_once "../../configuracion.php";
+include_once "../../../configuracion.php";
 $datos = data_submitted();
-$objAbmRol = new AbmRol();
-if($objAbmRol->modificacion($datos)){
+$objAbmUsuario = new AbmUsuario();
+$datos["usdeshabilitado"] = null;
+if($objAbmUsuario->alta($datos)){
     $respuesta["respuesta"] = "Se realizó correctamente";
 } else {
     $respuesta["respuesta"] = "No se pudo realizar el alta";
