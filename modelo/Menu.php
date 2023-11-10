@@ -128,7 +128,7 @@
         public function modificar() {
             $respuesta = false;
             $base = new BaseDatos();
-            if ($this -> getMedeshabilitado() == 'null') {
+            if ($this -> getMedeshabilitado() == null) {
                 $meDeshabilitado = ", medeshabilitado = NULL";
             } else {
                 $meDeshabilitado = ", medeshabilitado = '" . $this -> getMedeshabilitado() . "'";
@@ -156,12 +156,16 @@
             return $respuesta;
         }
 
-        public function eliminar() {
+        public function cambiarEstado() {
             $respuesta = false;
             $this -> cargar();
             //date_default_timezone_set('America/Argentina/Cordoba');
-            $fechaBaja = date('Y-m-d H:i:s');
-            $this -> setMedeshabilitado($fechaBaja);
+            if ($this->getMedeshabilitado() == null){
+                $fechaBaja = date('Y-m-d H:i:s');
+                $this -> setMedeshabilitado($fechaBaja);
+            } else {
+                $this->setMedeshabilitado(null);
+            }
             if ($this -> modificar()) {
                 $respuesta = true;
             }

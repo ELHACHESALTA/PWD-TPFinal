@@ -2,7 +2,8 @@
 include_once "../../../configuracion.php";
 $datos = data_submitted();
 $objAbmUsuario = new AbmUsuario();
-$listaUsuarios = $objAbmUsuario->buscar($datos["idusuario"]);
+$arreglo["idusuario"] = $datos["idusuario"];
+$listaUsuarios = $objAbmUsuario->buscar($arreglo);
 $datos["usdeshabilitado"] = $listaUsuarios[0]->getUsdeshabilitado();
 if($objAbmUsuario->modificacion($datos)){
     $respuesta["respuesta"] = "Se realizó correctamente";

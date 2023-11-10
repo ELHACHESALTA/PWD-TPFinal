@@ -69,7 +69,7 @@
             $resp = false;
             if ($this -> seteadosCamposClaves($param)) {
                 $objMenu = $this -> cargarObjetoConClave($param);
-                if ($objMenu != null and $objMenu -> eliminar()) {
+                if ($objMenu != null and $objMenu -> cambiarEstado()) {
                     $resp = true;
                 }
             }

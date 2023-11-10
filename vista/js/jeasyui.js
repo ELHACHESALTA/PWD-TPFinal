@@ -196,7 +196,128 @@ function destroyRol(){
 
 // FUNCIONES PARA LA GESTION DE MENUES
 function newMenu() {
-    $('#dlg').dialog('open').dialog('center').dialog('setTitle','Nuevo Menu');
-    $('#fm').form('clear');
+    $('#dlgMenu').dialog('open').dialog('center').dialog('setTitle','Nuevo Menu');
+    $('#fmMenu').form('clear');
     url = '../accion/administrador/altaMenues.php';
+}
+
+function editMenu(){
+    var row = $('#dgMenu').datagrid('getSelected');
+    if (row){
+        $('#dlgMenu').dialog('open').dialog('center').dialog('setTitle','Editar Menu');
+        $('#fmMenu').form('load',row);
+        url = '../accion/administrador/editarMenues.php';
+    }
+}
+
+function saveMenu(){
+    $('#fmMenu').form('submit',{
+        url: url,
+        iframe: false,
+        onSubmit: function(){
+            return $(this).form('validate');
+        },
+        success: function(result){
+            var result = eval('('+result+')');
+            if (result.errorMsg){
+                $.messager.show({
+                    title: 'Error',
+                    msg: result.errorMsg
+                });
+            } else {
+                $('#dlgMenu').dialog('close');        // close the dialog
+                $('#dgMenu').datagrid('reload');    // reload the user data
+            }
+        }
+    });
+}
+
+function destroyMenu(){
+    var row = $('#dgMenu').datagrid('getSelected');
+    if (row){
+        $.messager.confirm('Confirmar','Cambiar el estado del Menu?',function(r){
+            if (r){
+                $('#fmMenu').form('load',row);
+                url = '../accion/administrador/bajaMenues.php';
+                $('#fmMenu').form('submit',{
+                    url: url,
+                    iframe: false,
+                    onSubmit: function(){
+                        return $(this).form('validate');
+                    },
+                    success: function(result){
+                        var result = eval('('+result+')');
+                        if (result.errorMsg){
+                            $.messager.show({
+                                title: 'Error',
+                                msg: result.errorMsg
+                            });
+                        } else {
+                            $('#dgMenu').datagrid('reload');    // reload the menu data
+                        }
+                    }
+                });
+            }
+        });
+    }
+}
+
+
+// FUNCIONES PARA LA GESTION DE MENUROL
+function newMenuRol(){
+    $('#dlgMenuRol').dialog('open').dialog('center').dialog('setTitle','Nuevo MenuRol');
+    $('#fmMenuRol').form('clear');
+    url = '../accion/administrador/altaMenuRol.php';
+}
+
+function saveMenuRol(){
+    $('#fmMenuRol').form('submit',{
+        url: url,
+        iframe: false,
+        onSubmit: function(){
+            return $(this).form('validate');
+        },
+        success: function(result){
+            var result = eval('('+result+')');
+            if (result.errorMsg){
+                $.messager.show({
+                    title: 'Error',
+                    msg: result.errorMsg
+                });
+            } else {
+                $('#dlgMenuRol').dialog('close');        // close the dialog
+                $('#dgMenuRol').datagrid('reload');    // reload the user data
+            }
+        }
+    });
+}
+
+function destroyMenuRol(){
+    var row = $('#dgMenuRol').datagrid('getSelected');
+    if (row){
+        $.messager.confirm('Confirmar','Estás seguro que quieres eliminar el MenuRol definitivamente?',function(r){
+            if (r){
+                $('#fmMenuRol').form('load',row);
+                url = '../accion/administrador/bajaMenuRol.php';
+                $('#fmMenuRol').form('submit',{
+                    url: url,
+                    iframe: false,
+                    onSubmit: function(){
+                        return $(this).form('validate');
+                    },
+                    success: function(result){
+                        var result = eval('('+result+')');
+                        if (result.errorMsg){
+                            $.messager.show({
+                                title: 'Error',
+                                msg: result.errorMsg
+                            });
+                        } else {
+                            $('#dgMenuRol').datagrid('reload');    // reload the menu data
+                        }
+                    }
+                });
+            }
+        });
+    }
 }

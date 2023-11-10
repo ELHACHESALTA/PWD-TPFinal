@@ -45,7 +45,7 @@
         </div>
         <div style="margin-bottom:10px">
             <label for="uspass">Contraseña:</label>
-            <input name="" class="easyui-textbox" required="true" style="width:100%">
+            <input name="uspass" class="easyui-textbox" required="true" style="width:100%">
         </div>
         <div style="margin-bottom:10px">
             <label for="usmail">Email:</label>
@@ -108,7 +108,7 @@
 </div>
 
 
-<!-- Tabla para gestionar UsuarioRol -->
+<!-- Tabla para gestionar Roles -->
 
 <br>
 <h2>Gestion de Roles</h2>
