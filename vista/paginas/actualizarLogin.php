@@ -67,7 +67,7 @@
     </thead>
 </table>
 <div id="toolbarActLog">
-    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="actLog()">Editar Usuario</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editLogin()">Editar Usuario</a>
 </div>
 
 <div id="dlgActLog" class="easyui-dialog" style="width:400px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlgActLog-buttons'">
@@ -94,8 +94,8 @@
     </form>
 </div>
 <div id="dlgActLog-buttons">
-    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveActLog()" style="width:90px">Guardar</a>
-    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgActLog').dialog('close')" style="width:90px">Cancelar</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveLogin()" style="width:90px">Guardar</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width:90px">Cancelar</a>
 </div>
 
 <?php

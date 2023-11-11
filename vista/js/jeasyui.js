@@ -322,16 +322,16 @@ function destroyMenuRol(){
     }
 }
 
-function actLog() {
+function editLogin() {
     var row = $('#dgActLog').datagrid('getSelected');
-    if (row) {
+    if (row){
         $('#dlgActLog').dialog('open').dialog('center').dialog('setTitle','Editar Usuario');
         $('#fmActLog').form('load',row);
-        url = 'accion/cliente/editarUsuario.php';
+        url = '../accion/cliente/editarUsuario.php';
     }
 }
 
-function saveActLog(){
+function saveLogin() {
     $('#fmActLog').form('submit',{
         url: url,
         iframe: false,
