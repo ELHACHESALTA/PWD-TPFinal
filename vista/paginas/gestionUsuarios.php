@@ -1,6 +1,6 @@
 <?php
     include_once("../../configuracion.php");
-    $tituloPagina = "Gestion de Usuarios";
+    $tituloPagina = "Gestión de Usuarios";
     include_once("../estructura/encabezadoPrivado.php");
 
     if (isset($arregloSubMenu)) {

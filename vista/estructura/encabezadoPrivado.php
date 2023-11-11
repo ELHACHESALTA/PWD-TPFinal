@@ -42,6 +42,9 @@
                 } else { // Sino asigno por defecto el idrol con mayor jerarquía
                     $rolActivo = $sesionActual -> obtenerRolActivo();
                 }
+                if ($rolActivo == []) {
+                    $rolActivo = $roles[0];
+                }
                 $objAbmMenuRol = new AbmMenuRol();
                 // Obtengo un arreglo de menuRol
                 $arregloMenu = $objAbmMenuRol -> buscar(['idrol' => $rolActivo -> getIdrol()]);
@@ -58,7 +61,7 @@
             } else { // Si no existen roles para la sesión actual se cierra la sesión.
                 header("Location:../accion/cerrarSesion.php");
             }
-            $enlaceInicio = "paginaSegura.php?idrol=" . $rolActivo -> getIdrol();
+
         ?>
 
         <!-- Barra Superior INICIO -->
