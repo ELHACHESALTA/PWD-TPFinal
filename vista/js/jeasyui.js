@@ -322,6 +322,7 @@ function destroyMenuRol(){
     }
 }
 
+// FUNCIONES PARA LA GESTION DE USUARIO CLIENTE
 function editLogin() {
     var row = $('#dgActLog').datagrid('getSelected');
     if (row){
@@ -407,6 +408,37 @@ function cancelarCompraEstado(){
                             });
                         } else {
                             $('#dgCompraEstado').datagrid('reload');    // reload the menu data
+                        }
+                    }
+                });
+            }
+        });
+    }
+}
+
+// FUNCIONES PARA LA GESTION DE COMPRA
+function destroyCompra() {
+    var row = $('#dgClienteCompra').datagrid('getSelected');
+    if (row){
+        $.messager.confirm('Confirmar','Cambiar el estado del Menu?',function(r){
+            if (r){
+                $('#fmClienteCompra').form('load',row);
+                url = '../accion/cliente/bajaClienteCompra.php';
+                $('#fmClienteCompra').form('submit',{
+                    url: url,
+                    iframe: false,
+                    onSubmit: function(){
+                        return $(this).form('validate');
+                    },
+                    success: function(result){
+                        var result = eval('('+result+')');
+                        if (result.errorMsg){
+                            $.messager.show({
+                                title: 'Error',
+                                msg: result.errorMsg
+                            });
+                        } else {
+                            $('#dgClienteCompra').datagrid('reload');    // reload the menu data
                         }
                     }
                 });
