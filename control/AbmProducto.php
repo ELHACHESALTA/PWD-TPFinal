@@ -66,7 +66,7 @@
             $resp = false;
             if ($this -> seteadosCamposClaves($param)) {
                 $objProducto = $this -> cargarObjetoConClave($param);
-                if ($objProducto != null and $objProducto -> eliminarLogico()) {
+                if ($objProducto != null and $objProducto -> cambiarEstado()) {
                     $resp = true;
                 }
             }

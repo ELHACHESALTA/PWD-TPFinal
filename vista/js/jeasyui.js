@@ -446,3 +446,103 @@ function destroyCompra() {
         });
     }
 }
+
+
+// FUNCIONES PARA LA GESTION DE PRODUCTOS
+
+function newProducto(){
+    $('#dlgProductos').dialog('open').dialog('center').dialog('setTitle','Nuevo Producto');
+    $('#fmProductos').form('clear');
+    url = '../accion/deposito/altaProducto.php';
+}
+
+function editProducto(){
+    var row = $('#dgProductos').datagrid('getSelected');
+    if (row){
+        $('#dlgProductos').dialog('open').dialog('center').dialog('setTitle','Editar Producto');
+        $('#fmProductos').form('load',row);
+        url = '../accion/deposito/editarProducto.php';
+    }
+}
+function saveProducto(){
+    $('#fmProductos').form('submit',{
+        url: url,
+        iframe: false,
+        onSubmit: function(){
+            return $(this).form('validate');
+        },
+        success: function(result){
+            var result = eval('('+result+')');
+            if (result.errorMsg){
+                $.messager.show({
+                    title: 'Error',
+                    msg: result.errorMsg
+                });
+            } else {
+                $('#dlgProductos').dialog('close');        // close the dialog
+                $('#dgProductos').datagrid('reload');    // reload the user data
+            }
+        }
+    });
+}
+
+function destroyProducto(){
+    var row = $('#dgProductos').datagrid('getSelected');
+    if (row){
+        $.messager.confirm('Confirmar','Cambiar el estado del Producto?',function(r){
+            if (r){
+                $('#fmProductos').form('load',row);
+                url = '../accion/deposito/bajaProducto.php';
+                $('#fmProductos').form('submit',{
+                    url: url,
+                    iframe: false,
+                    onSubmit: function(){
+                        return $(this).form('validate');
+                    },
+                    success: function(result){
+                        var result = eval('('+result+')');
+                        if (result.errorMsg){
+                            $.messager.show({
+                                title: 'Error',
+                                msg: result.errorMsg
+                            });
+                        } else {
+                            $('#dgProductos').datagrid('reload');    // reload the menu data
+                        }
+                    }
+                });
+            }
+        });
+    }
+}
+
+// FUNCIONES PARA LA GESTION DEL STOCK
+function editStock(){
+    var row = $('#dgStock').datagrid('getSelected');
+    if (row){
+        $('#dlgStock').dialog('open').dialog('center').dialog('setTitle','Editar Stock');
+        $('#fmStock').form('load',row);
+        url = '../accion/deposito/editarStock.php';
+    }
+}
+function saveStock(){
+    $('#fmStock').form('submit',{
+        url: url,
+        iframe: false,
+        onSubmit: function(){
+            return $(this).form('validate');
+        },
+        success: function(result){
+            var result = eval('('+result+')');
+            if (result.errorMsg){
+                $.messager.show({
+                    title: 'Error',
+                    msg: result.errorMsg
+                });
+            } else {
+                $('#dlgStock').dialog('close');        // close the dialog
+                $('#dgStock').datagrid('reload');    // reload the user data
+            }
+        }
+    });
+}

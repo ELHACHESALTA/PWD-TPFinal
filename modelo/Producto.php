@@ -168,12 +168,16 @@
         }
 
 
-        public function eliminarLogico(){
-            $respuesta = false;
+        public function cambiarEstado(){
+            $respuesta = false; 
             $this -> cargar();
             //date_default_timezone_set('America/Argentina/Cordoba');
-            $fechaBaja = date('Y-m-d H:i:s');
-            $this -> setProdeshabilitado($fechaBaja);
+            if ($this->getProdeshabilitado() == null){
+                $fechaBaja = date('Y-m-d H:i:s');
+                $this -> setProdeshabilitado($fechaBaja);
+            } else {
+                $this->setProdeshabilitado(null);
+            }
             if ($this -> modificar()) {
                 $respuesta = true;
             }
