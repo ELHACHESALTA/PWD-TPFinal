@@ -352,3 +352,65 @@ function saveLogin() {
         }
     });
 }
+
+
+// FUNCIONES PARA LA GESTION DE COMPRAESTADO
+function siguienteEstado(){
+    var row = $('#dgCompraEstado').datagrid('getSelected');
+    if (row){
+        $.messager.confirm('Confirmar','Seguro que desea avanzar la CompraEstado?',function(r){
+            if (r){
+                $('#fmCompraEstado').form('load',row);
+                url = '../accion/administrador/siguienteEstadoCompra.php';
+                $('#fmCompraEstado').form('submit',{
+                    url: url,
+                    iframe: false,
+                    onSubmit: function(){
+                        return $(this).form('validate');
+                    },
+                    success: function(result){
+                        var result = eval('('+result+')');
+                        if (result.errorMsg){
+                            $.messager.show({
+                                title: 'Error',
+                                msg: result.errorMsg
+                            });
+                        } else {
+                            $('#dgCompraEstado').datagrid('reload');    // reload the menu data
+                        }
+                    }
+                });
+            }
+        });
+    }
+}
+
+function cancelarCompraEstado(){
+    var row = $('#dgCompraEstado').datagrid('getSelected');
+    if (row){
+        $.messager.confirm('Confirmar','Seguro que desea cancelar la CompraEstado?',function(r){
+            if (r){
+                $('#fmCompraEstado').form('load',row);
+                url = '../accion/administrador/cancelarCompraEstado.php';
+                $('#fmCompraEstado').form('submit',{
+                    url: url,
+                    iframe: false,
+                    onSubmit: function(){
+                        return $(this).form('validate');
+                    },
+                    success: function(result){
+                        var result = eval('('+result+')');
+                        if (result.errorMsg){
+                            $.messager.show({
+                                title: 'Error',
+                                msg: result.errorMsg
+                            });
+                        } else {
+                            $('#dgCompraEstado').datagrid('reload');    // reload the menu data
+                        }
+                    }
+                });
+            }
+        });
+    }
+}
