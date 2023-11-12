@@ -9,7 +9,7 @@
         while (($i < count($arregloSubMenu)) && (!$subMenuDeshabilitado)) {
             $subMenuActual = $arregloSubMenu[$i];
             // Verifica que el submenú se encuentre habilitado.
-            if ($subMenuActual -> getMedeshabilitado() != NULL) {
+            if ($subMenuActual -> getMedeshabilitado() != 'null') {
                 $subMenuDeshabilitado = true;
             }
             $i++;
