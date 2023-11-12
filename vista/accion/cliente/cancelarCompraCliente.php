@@ -37,21 +37,21 @@ if ($datos["idcompraestadotipo"] == 1){
                 $datos["cefechaini"] = $fechaActual;
                 $datos["cefechafin"] = $fechaActual;
                 if($objAbmCompraEstado->alta($datos)){
-                    $respuesta = "se cancelo la compra correctamente";
+                    $respuesta["respuesta"] = "Se canceló la compra correctamente";
                 } else {
-                    $respuesta = "no se pudo cancelar la compra";    
+                    $respuesta["errorMsg"] = "No se pudo cancelar la compra";    
                 }
             } else {
-                $respuesta = "no se pudo cancelar la compra";
+                $respuesta["errorMsg"] = "No se pudo cancelar la compra";
             }
         } else {
-            $respuesta = "la compra ya esta avanzada";
+            $respuesta["errorMsg"] = "La compra ya está avanzada";
         }
     } else {
-        $respuesta = "la compra ya está cancelada";
+        $respuesta["errorMsg"] = "La compra ya está cancelada";
     }
 } else {
-    $respuesta = "no se puede cancelar la compra al siguiente estado debido a que el estado 3 es el maximo";
+    $respuesta["errorMsg"] = "Solo se puede cancelar la compra si estuviera en estado 'iniciada'";
 }
 echo json_encode($respuesta);
 ?>

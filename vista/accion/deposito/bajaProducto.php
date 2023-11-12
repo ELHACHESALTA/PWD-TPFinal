@@ -3,9 +3,9 @@
     $datos = data_submitted();
     $objAbmProducto = new AbmProducto();
     if($objAbmProducto->baja($datos)){
-        $respuesta = "se cambio el estado correctamente";
+        $respuesta["respuesta"] = "se cambio el estado del producto correctamente";
     } else {
-        $respuesta = "no se pudo cambiar el estado";
+        $respuesta["errorMsg"] = "no se pudo cambiar el estado del producto";
     }
 
     echo json_encode($respuesta);

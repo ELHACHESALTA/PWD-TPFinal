@@ -36,21 +36,21 @@ if ($datos["idcompraestadotipo"] < 3 && $datos["idcompraestadotipo"] > 0){ // ve
                 $datos["cefechaini"] = $fechaActual;
                 $datos["cefechafin"] = null;
                 if($objAbmCompraEstado->alta($datos)){
-                    $respuesta = "se cambio el estado del estadocompra correctamente";
+                    $respuesta["respuesta"] = "Se cambió el estado de la compra correctamente";
                 } else {
-                    $respuesta = "no se pudo cambiar de estado tipo";    
+                    $respuesta["errorMsg"] = "No se pudo cambiar el estado de la compra";    
                 }
             } else {
-                $respuesta = "no se pudo cambiar de estado tipo";
+                $respuesta["errorMsg"] = "No se pudo cambiar el estado de la compra";
             }
         } else {
-            $respuesta = "la compra ya ha sido avanzada";
+            $respuesta["errorMsg"] = "La compra ya ha sido avanzada";
         }
     } else {
-        $respuesta = "la compra ya ha sido cancelada";
+        $respuesta["errorMsg"] = "La compra ya ha sido cancelada";
     }
 } else {
-    $respuesta = "no se puede pasar la compra al siguiente estado debido a que el estado 'enviada' es el maximo";
+    $respuesta["errorMsg"] = "No se puede pasar la compra al siguiente estado debido a que el estado 'enviada' o 'cancelada' es el último estado";
 }
 
 echo json_encode($respuesta);

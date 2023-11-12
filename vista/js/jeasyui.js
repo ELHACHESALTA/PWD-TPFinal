@@ -29,6 +29,10 @@ function saveUser(){
                     msg: result.errorMsg
                 });
             } else {
+                $.messager.show({
+                    title: 'Operacion exitosa',
+                    msg: result.respuesta
+                });
                 $('#dlg').dialog('close');        // close the dialog
                 $('#dg').datagrid('reload');    // reload the user data
             }
@@ -56,6 +60,10 @@ function destroyUser(){
                                 msg: result.errorMsg
                             });
                         } else {
+                            $.messager.show({
+                                title: 'Operacion exitosa',
+                                msg: result.respuesta
+                            });
                             $('#dg').datagrid('reload');    // reload the menu data
                         }
                     }
@@ -88,6 +96,10 @@ function saveUsuarioRol(){
                     msg: result.errorMsg
                 });
             } else {
+                $.messager.show({
+                    title: 'Operacion exitosa',
+                    msg: result.respuesta
+                });
                 $('#dlg2').dialog('close');        // close the dialog
                 $('#dg2').datagrid('reload');    // reload the user data
             }
@@ -116,6 +128,10 @@ function destroyUsuarioRol(){
                                 msg: result.errorMsg
                             });
                         } else {
+                            $.messager.show({
+                                title: 'Operacion exitosa',
+                                msg: result.respuesta
+                            });
                             $('#dg2').datagrid('reload');    // reload the menu data
                         }
                     }
@@ -148,6 +164,10 @@ function saveRol(){
                     msg: result.errorMsg
                 });
             } else {
+                $.messager.show({
+                    title: 'Operacion exitosa',
+                    msg: result.respuesta
+                });
                 $('#dlg3').dialog('close');        // close the dialog
                 $('#dg3').datagrid('reload');    // reload the user data
             }
@@ -185,6 +205,10 @@ function destroyRol(){
                                 msg: result.errorMsg
                             });
                         } else {
+                            $.messager.show({
+                                title: 'Operacion exitosa',
+                                msg: result.respuesta
+                            });
                             $('#dg3').datagrid('reload');    // reload the menu data
                         }
                     }
@@ -225,6 +249,10 @@ function saveMenu(){
                     msg: result.errorMsg
                 });
             } else {
+                $.messager.show({
+                    title: 'Operacion exitosa',
+                    msg: result.respuesta
+                });
                 $('#dlgMenu').dialog('close');        // close the dialog
                 $('#dgMenu').datagrid('reload');    // reload the user data
             }
@@ -253,6 +281,10 @@ function destroyMenu(){
                                 msg: result.errorMsg
                             });
                         } else {
+                            $.messager.show({
+                                title: 'Operacion exitosa',
+                                msg: result.respuesta
+                            });
                             $('#dgMenu').datagrid('reload');    // reload the menu data
                         }
                     }
@@ -285,6 +317,10 @@ function saveMenuRol(){
                     msg: result.errorMsg
                 });
             } else {
+                $.messager.show({
+                    title: 'Operacion exitosa',
+                    msg: result.respuesta
+                });
                 $('#dlgMenuRol').dialog('close');        // close the dialog
                 $('#dgMenuRol').datagrid('reload');    // reload the user data
             }
@@ -313,6 +349,10 @@ function destroyMenuRol(){
                                 msg: result.errorMsg
                             });
                         } else {
+                            $.messager.show({
+                                title: 'Operacion exitosa',
+                                msg: result.respuesta
+                            });
                             $('#dgMenuRol').datagrid('reload');    // reload the menu data
                         }
                     }
@@ -347,6 +387,10 @@ function saveLogin() {
                     msg: result.errorMsg
                 });
             } else {
+                $.messager.show({
+                    title: 'Operacion exitosa',
+                    msg: result.respuesta
+                });
                 $('#dlgActLog').dialog('close');        // close the dialog
                 $('#dgActLog').datagrid('reload');    // reload the user data
             }
@@ -377,6 +421,10 @@ function siguienteEstado(){
                                 msg: result.errorMsg
                             });
                         } else {
+                            $.messager.show({
+                                title: 'Operacion exitosa',
+                                msg: result.respuesta
+                            });
                             $('#dgCompraEstado').datagrid('reload');    // reload the menu data
                         }
                     }
@@ -407,6 +455,10 @@ function cancelarCompraEstado(){
                                 msg: result.errorMsg
                             });
                         } else {
+                            $.messager.show({
+                                title: 'Operacion exitosa',
+                                msg: result.respuesta
+                            });
                             $('#dgCompraEstado').datagrid('reload');    // reload the menu data
                         }
                     }
@@ -486,6 +538,10 @@ function saveProducto(){
                     msg: result.errorMsg
                 });
             } else {
+                $.messager.show({
+                    title: 'Operacion exitosa',
+                    msg: result.respuesta
+                });
                 $('#dlgProductos').dialog('close');        // close the dialog
                 $('#dgProductos').datagrid('reload');    // reload the user data
             }
@@ -514,6 +570,10 @@ function destroyProducto(){
                                 msg: result.errorMsg
                             });
                         } else {
+                            $.messager.show({
+                                title: 'Operacion exitosa',
+                                msg: result.respuesta
+                            });
                             $('#dgProductos').datagrid('reload');    // reload the menu data
                         }
                     }
@@ -547,6 +607,10 @@ function saveStock(){
                     msg: result.errorMsg
                 });
             } else {
+                $.messager.show({
+                    title: 'Operacion exitosa',
+                    msg: result.respuesta
+                });
                 $('#dlgStock').dialog('close');        // close the dialog
                 $('#dgStock').datagrid('reload');    // reload the user data
             }
@@ -576,6 +640,10 @@ function cancelarCompraCliente(){
                                 msg: result.errorMsg
                             });
                         } else {
+                            $.messager.show({
+                                title: 'Operacion exitosa',
+                                msg: result.respuesta
+                            });
                             $('#dgSeg').datagrid('reload');    // reload the menu data
                         }
                     }

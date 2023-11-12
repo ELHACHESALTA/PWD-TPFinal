@@ -6,9 +6,9 @@
     $datos["procantstock"] = 0;
     $datos["proprecio"] = intval($datos["proprecio"]);
     if($objAbmProducto->alta($datos)){
-        $respuesta["respuesta"] = "Se realizó correctamente";
+        $respuesta["respuesta"] = "Se dio de alta el producto correctamente";
     } else {
-        $respuesta["respuesta"] = "No se pudo realizar el alta";
+        $respuesta["errorMsg"] = "No se pudo realizar el alta del producto";
     }
     echo json_encode($respuesta);
 ?>

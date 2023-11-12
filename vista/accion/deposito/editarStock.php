@@ -8,9 +8,9 @@
     $datos["prodeshabilitado"] = $listaProductos[0]->getProdeshabilitado();
     $datos["procantstock"] = intval($datos["procantstock"]);
     if($objAbmProducto->modificacion($datos)){
-        $respuesta["respuesta"] = "Se realizó correctamente";
+        $respuesta["respuesta"] = "Se modificó el stock correctamente";
     } else {
-        $respuesta["respuesta"] = "No se pudo realizar la modificacion";
+        $respuesta["errorMsg"] = "No se pudo realizar la modificacion del stock";
     }
     echo json_encode($respuesta);
 ?>

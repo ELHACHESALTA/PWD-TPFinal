@@ -4,9 +4,9 @@ $datos = data_submitted();
 $objAbmMenu = new AbmMenu();
 $datos["medeshabilitado"] = null;
 if($objAbmMenu->alta($datos)){
-    $respuesta["respuesta"] = "Se realizó correctamente";
+    $respuesta["respuesta"] = "Se dio de alta el Menú correctamente";
 } else {
-    $respuesta["respuesta"] = "No se pudo realizar el alta";
+    $respuesta["errorMsg"] = "No se pudo realizar el alta del Menú";
 }
 echo json_encode($respuesta);
 ?>

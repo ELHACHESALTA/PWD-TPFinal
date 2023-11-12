@@ -3,8 +3,8 @@ include_once "../../../configuracion.php";
 $datos = data_submitted();
 $objAbmRol = new AbmRol();
 if($objAbmRol->alta($datos)){
-    $respuesta["respuesta"] = "Se realizó correctamente";
+    $respuesta["respuesta"] = "Se dio de alta el Rol correctamente!";
 } else {
-    $respuesta["respuesta"] = "No se pudo realizar el alta";
+    $respuesta["errorMsg"] = "No se pudo realizar el alta";
 }
 echo json_encode($respuesta);

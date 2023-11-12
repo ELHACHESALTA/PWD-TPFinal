@@ -9,9 +9,9 @@
         $datos["uspass"] = md5($datos["uspass"]);    
     }
     if($objAbmUsuario->modificacion($datos)){
-        $respuesta["respuesta"] = "Se realizó correctamente";
+        $respuesta["respuesta"] = "Se modificó el usuario correctamente";
     } else {
-        $respuesta["respuesta"] = "No se pudo realizar el alta";
+        $respuesta["errorMsg"] = "No se pudo modificar el usuario";
     }
     echo json_encode($respuesta);
 ?>

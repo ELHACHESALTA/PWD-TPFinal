@@ -6,9 +6,9 @@ $objAbmMenu = new AbmMenu();
 $listaMenues = $objAbmMenu->buscar($arreglo);
 $datos["medeshabilitado"] = $listaMenues[0]->getMedeshabilitado();
 if($objAbmMenu->modificacion($datos)){
-    $respuesta["respuesta"] = "Se realizó correctamente";
+    $respuesta["respuesta"] = "Se modificó el Menú correctamente";
 } else { 
-    $respuesta["respuesta"] = "No se pudo realizar el alta";
+    $respuesta["errorMsg"] = "No se pudo modificar el Menú";
 }
 echo json_encode($respuesta);
 ?>
