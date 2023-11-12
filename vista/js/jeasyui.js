@@ -447,6 +447,13 @@ function destroyCompra() {
     }
 }
 
+function muestraDetalleCompra(){
+    var row = $('#dgCompraEstado').datagrid('getSelected');
+    if (row){
+        window.location.href = "detalleCompra.php?idcompra="+row.idcompra+"&idrol=1";    
+    }
+}
+
 
 // FUNCIONES PARA LA GESTION DE PRODUCTOS
 
@@ -545,4 +552,43 @@ function saveStock(){
             }
         }
     });
+}
+
+// FUNCIONES PARA GESTIONAR LA COMPRA DESDE EL CLIENTE
+function cancelarCompraCliente(){
+    var row = $('#dgSeg').datagrid('getSelected');
+    if (row){
+        $.messager.confirm('Confirmar','Seguro que desea cancelar la CompraEstado?',function(r){
+            if (r){
+                $('#fmSeg').form('load',row);
+                url = '../accion/cliente/cancelarCompraCliente.php';
+                $('#fmSeg').form('submit',{
+                    url: url,
+                    iframe: false,
+                    onSubmit: function(){
+                        return $(this).form('validate');
+                    },
+                    success: function(result){
+                        var result = eval('('+result+')');
+                        if (result.errorMsg){
+                            $.messager.show({
+                                title: 'Error',
+                                msg: result.errorMsg
+                            });
+                        } else {
+                            $('#dgSeg').datagrid('reload');    // reload the menu data
+                        }
+                    }
+                });
+            }
+        });
+    }
+}
+
+
+function verDetalleCliente(){
+    var row = $('#dgSeg').datagrid('getSelected');
+    if (row){
+        window.location.href = "detalleCompra.php?idcompra="+row.idcompra+"&idrol=3";    
+    }                       
 }

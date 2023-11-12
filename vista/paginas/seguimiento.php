@@ -36,7 +36,7 @@
         echo "<a class='btn btn-lg btn-dark text-center text-white float-start position-absolute d-flex justify-content-start mt-2' href='inicio.php'><i class='bi bi-arrow-90deg-left'></i></a>";
         echo "<br><br><br><h1 class='display-5 pb-3 fw-bold'>No puede acceder al seguimiento de la compra ya que no tiene los permisos necesarios en su rol.</h1>";
     // Verifica que el menu padre no se encuentre deshabilitado
-    } elseif (($rolActivo -> getIdrol() == 1) && (!isset($arregloMenuPadre))) {
+    } elseif (($rolActivo -> getIdrol() == 3) && (!isset($arregloMenuPadre))) {
         echo "<a class='btn btn-lg btn-dark text-center text-white float-start position-absolute d-flex justify-content-start mt-2' href='inicio.php'><i class='bi bi-arrow-90deg-left'></i></a>";
         echo "<br><br><br><h1 class='display-5 pb-3 fw-bold'>No puede acceder al seguimiento de la compra ya que la página se encuentra deshabilitada en una jerarquía superior del menú.</h1>";
     } elseif (!$subMenuDeshabilitado) {
@@ -51,51 +51,47 @@
 <!-- Tabla para gestionar Usuario -->
 
 <a class="btn btn-lg btn-dark text-center text-white float-start position-absolute d-flex justify-content-start mt-2" href="inicio.php"><i class="bi bi-arrow-90deg-left"></i></a>
-<h1 class="display-5 pb-3 fw-bold">Gestión de Usuarios</h1>
+<h1 class="display-5 pb-3 fw-bold">Gestión de Compras</h1>
 <p class="lead">Pulse los botones para realizar las acciones que desee.</p>
 
-<table id="dgActLog" class="easyui-datagrid" style="width:700px"
-        url="../accion/cliente/listarUsuarioActual.php"
-        toolbar="#toolbarActLog"
+<table id="dgSeg" class="easyui-datagrid" style="width:900px"
+        url="../accion/cliente/listarCompraEstadoCliente.php"
+        toolbar="#toolbarSeg"
         rownumbers="true" fitColumns="true" singleSelect="true">
     <thead>
         <tr>
-            <th field="usnombre" width="60">Nombre</th>
-            <th field="uspass" width="120">Contraseña</th>
-            <th field="usmail" width="55">Email</th>
+            <th field="idcompraestado" width="85">Id Compra Estado</th>
+            <th field="idcompra" width="50">Id Compra</th>
+            <th field="idcompraestadotipo" width="107">Id Compra Estado Tipo</th>
+            <th field="cetdescripcion" width="90">Estado</th>
+            <th field="cefechaini" width="100">Fecha de Inicio</th>
+            <th field="cefechafin" width="100">Fecha de Fin</th>
+            <th field="usnombre" width="70">Comprador</th>
         </tr>
     </thead>
 </table>
-<div id="toolbarActLog">
-    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editLogin()">Editar Usuario</a>
-</div>
-
-<div id="dlgActLog" class="easyui-dialog" style="width:400px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlgActLog-buttons'">
-    <form id="fmActLog" method="post" novalidate style="margin:0;padding:20px 50px">
-        <h3>Informacion del usuario</h3>
-        <div style="margin-bottom:10px">
-            <label for="usnombre">Nombre:</label>
-            <input name="usnombre" class="easyui-textbox" required="true" style="width:100%">
-        </div>
-        <div style="margin-bottom:10px">
-            <label for="uspass">Contraseña:</label>
-            <input name="uspass" class="easyui-textbox" required="true" style="width:100%">
-        </div>
-        <div style="margin-bottom:10px">
-            <label for="usmail">Email:</label>
-            <input name="usmail" class="easyui-textbox" required="true" validType="email" style="width:100%">
+<div id="toolbarSeg">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="cancelarCompraCliente()">Cancelar Compra</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="verDetalleCliente()">Detalles de la Compra</a></div>
+<div id="dlgSeg" class="easyui-dialog" style="width:400px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlgSeg-buttons'">
+    <form id="fmSeg" method="post" novalidate style="margin:0;padding:20px 50px">
+        <h3>Informacion de la Compra</h3>
+        <div>
+            <input type="hidden" name="idcompraestado" value="idcompraestado">
         </div>
         <div>
-            <input type="hidden" name="usdeshabilitado" value="usdeshabilitado">
+            <input type="hidden" name="idcompra" value="idcompra">
         </div>
         <div>
-            <input type="hidden" name="idusuario" value="idusuario">
+            <input type="hidden" name="idcompraestadotipo" value="idcompraestadotipo">
+        </div>
+        <div>
+            <input type="hidden" name="cefechaini" value="cefechaini">
+        </div>
+        <div>
+            <input type="hidden" name="cefechafin" value="cefechafin">
         </div>
     </form>
-</div>
-<div id="dlgActLog-buttons">
-    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveLogin()" style="width:90px">Guardar</a>
-    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width:90px">Cancelar</a>
 </div>
 
 <?php
