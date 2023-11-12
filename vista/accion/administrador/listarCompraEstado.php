@@ -10,6 +10,7 @@ foreach ($listaCompraEstado as $elemento) {
     $nuevoElemento['cetdescripcion'] = $elemento->getObjCompraEstadoTipo()->getCetdescripcion();
     $nuevoElemento['cefechaini'] = $elemento->getCefechaini();
     $nuevoElemento['cefechafin'] = $elemento->getCefechafin();
+    $nuevoElemento['usnombre'] = $elemento->getObjCompra()->getObjUsuario()->getUsnombre();
     array_push($arregloSalida, $nuevoElemento);
 }
 echo json_encode($arregloSalida);
