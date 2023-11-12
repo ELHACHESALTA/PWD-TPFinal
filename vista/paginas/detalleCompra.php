@@ -23,7 +23,7 @@ if ($datos["idrol"] == 1){
         rownumbers="true" fitColumns="true" singleSelect="true">
     <thead>
         <tr>
-            <th field="foto" width="15">N°</th>
+            <th field="foto" width="40">Imagen</th>
             <th field="pronombre" width="85">Nombre del Producto</th>
             <th field="cicantidad" width="50">Cantidad</th>
             <th field="proprecio" width="107">Precio Unitario</th>

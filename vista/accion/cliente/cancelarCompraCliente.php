@@ -26,7 +26,7 @@ while ((!$compraAvanzada2) && ($i < count($arregloCompraEstado))){
     }
 }
 
-if ($datos["idcompraestadotipo"] <= 3 && $datos["idcompraestadotipo"] > 0){
+if ($datos["idcompraestadotipo"] == 1){
     if (!$compraCancelada){
         if (!$compraAvanzada2){
             $fechaActual = date('Y-m-d H:i:s');
