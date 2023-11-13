@@ -81,8 +81,8 @@
             echo "<td>".$compraItem->getCicantidad()."</td>";
             echo "<td>".$compraItem->getObjProducto()->getProprecio()."</td>";
             $precioTotalProducto = $compraItem->getCicantidad()*$compraItem->getObjProducto()->getProprecio();
-            echo "<td>".$precioTotalProducto."</td>";
-            echo "<td><a href='../accion/tienda/bajaCompraItem.php'>Eliminar</a></td></tr>";
+            echo "<td>" . $precioTotalProducto . "</td>";
+            echo "<td><a href='../accion/tienda/bajaCompraItem.php?idcompraitem=" . $compraItem -> getIdcompraitem() . "'>Eliminar</a></td></tr>";
             $totalCompra = $totalCompra + $precioTotalProducto;
         }
         echo "<tr><td></td><td></td><td>Precio Total de la Compra:</td>
