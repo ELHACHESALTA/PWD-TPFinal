@@ -60,11 +60,12 @@
         rownumbers="true" fitColumns="true" singleSelect="true">
     <thead>
         <tr>
-            <th field="idproducto" width="60">Id</th>
+            <th field="idproducto" width="20">Id</th>
             <th field="pronombre" width="60">Nombre</th>
             <th field="prodetalle" width="100">Detalle</th>
-            <th field="proprecio" width="70">Precio</th>
-            <th field="prodeshabilitado" width="55">Estado</th>
+            <th field="proprecio" width="35">Precio</th>
+            <th field="prodeshabilitado" width="75">Estado</th>
+            <th field="imagen" width="55">Imagen</th>
         </tr>
     </thead>
 </table>
@@ -72,7 +73,7 @@
     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newProducto()">Nuevo Producto</a>
     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editProducto()">Editar Producto</a>
     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyProducto()">Habilitar/Deshabilitar</a>
-</div>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="cargarImagen()">Cargar Imagen</a></div>
 
 <div id="dlgProductos" class="easyui-dialog" style="width:400px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlgProductos-buttons'">
     <form id="fmProductos" method="post" novalidate style="margin:0;padding:20px 50px">
@@ -145,6 +146,30 @@
     <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveStock()" style="width:90px">Guardar</a>
     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgStock').dialog('close')" style="width:90px">Cancelar</a>
 </div>
+
+<!-- formulario para cargar imagen -->
+<div id="dlgImg" class="easyui-dialog" style="width:400px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons-img'">
+    <form id="fmImg" method="post" enctype="multipart/form-data" novalidate style="margin:0;padding:20px 50px">
+        <div class="col-12">
+            <label for="imagen" class="form-label"><strong>Cargar Imagen</strong></label> 
+            <div style="margin-bottom:10px">
+                <label for="idproducto">Id Producto:</label>
+                <input name="idproducto" class="easyui-numberbox" required="true"style="width:100%">
+            </div>
+            <div class="col">
+                <input type="file" name="imagen" id="imagen" required=true>
+                
+                <small class="text-muted">Formato permitido: .jpg</small>
+                <div class="invalid-feedback">Seleccione una imagen de su equipo</div>
+            </div>
+        </div>
+    </form>
+</div>
+<div id="dlg-buttons-img">
+    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveImagen()" style="width:90px">Aceptar</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgImg').dialog('close')" style="width:90px">Cancelar</a>
+</div>
+
 
 <div style="height: 76px;"></div>
 

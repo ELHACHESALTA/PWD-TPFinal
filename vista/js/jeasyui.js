@@ -696,3 +696,37 @@ function eliminarCompraItem(){
         });
     }
 }
+
+// FUNCIONES PARA QUE EL DEPOSITO PUEDA CARGAR UNA IMAGEN DEL PRODUCTO
+function cargarImagen(){
+    $('#dlgImg').dialog('open').dialog('center').dialog('setTitle','Cargar Imagen');
+    $('#fmImg').form('clear');
+    url = '../accion/deposito/cargarImagen.php';
+}
+
+function saveImagen(){
+    $('#fmImg').form('submit',{
+        url: url,
+        iframe: false,
+        onSubmit: function(){
+            return $(this).form('validate');
+        },
+        success: function(result){
+            var result = eval('('+result+')');
+            if (result.errorMsg){
+                $.messager.show({
+                    title: 'Error',
+                    msg: result.errorMsg
+                });
+                $('#dlgImg').dialog('close');
+            } else {
+                $.messager.show({
+                    title: 'Operacion exitosa',
+                    msg: result.respuesta
+                });
+                $('#dlgImg').dialog('close');        // close the dialog
+                $('#dgProductos').datagrid('reload');
+            }
+        }
+    }); 
+}
