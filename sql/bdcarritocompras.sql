@@ -109,10 +109,11 @@ INSERT INTO `menu` (`idmenu`, `menombre`, `medescripcion`, `idpadre`, `medeshabi
 (5, 'Gestion de Menues', 'gestionMenues', 1, NULL),
 (6, 'Gestion de Compras', 'gestionCompras', 1, NULL),
 (7, 'Gestion de Productos', 'gestionProductos', 2, NULL),
-(8, 'Actualizar Informacion', 'actualizarLogin', 3, NULL),
-(9, 'Realizar compra', 'tienda', 3, NULL),
-(10, 'Ver Carrito', 'carrito', 3, NULL),
-(11, 'Ver Estado de Compras', 'seguimiento', 3, NULL);
+(8, 'Gestion de Compras', 'gestionComprasDeposito', 2, NULL),
+(9, 'Actualizar Informacion', 'actualizarLogin', 3, NULL),
+(10, 'Realizar compra', 'tienda', 3, NULL),
+(11, 'Ver Carrito', 'carrito', 3, NULL),
+(12, 'Ver Estado de Compras', 'seguimiento', 3, NULL);
 
 -- --------------------------------------------------------
 
