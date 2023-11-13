@@ -14,7 +14,7 @@
                 $objUsuario = new Usuario();
                 $objUsuario->setIdusuario($param["idusuario"]);
                 $objUsuario->cargar();
-                $obj -> setear($param["idusuario"], $param["cofecha"], $objUsuario, $param["metodo"]);
+                $obj -> setear($param['idcompra'], $param["cofecha"], $objUsuario, $param["metodo"]);
             }
             return $obj;
         }

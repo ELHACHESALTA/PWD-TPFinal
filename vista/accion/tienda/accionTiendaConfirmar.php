@@ -19,7 +19,7 @@
         }
         if (!$sinStock){
             //Cambio el metodo de compra de 'carrito' a 'normal' para que no se cargue en la tabla de carrito.
-            $objAbmCompra -> modificacion(['idcompra' => $datos['idcompra'],'cofecha' => $compraCargar[0] -> getCofecha(),'idusuario' => $compraCargar[0] -> getObjUsuario() -> getIdusuario(), 'metodo'=>'compra']);
+            $objAbmCompra -> modificacion(['idcompra' => $compraCargar[0] -> getIdcompra(),'cofecha' => $compraCargar[0] -> getCofecha(),'idusuario' => $compraCargar[0] -> getObjUsuario() -> getIdusuario(), 'metodo' => 'normal']);
             //Pongo la compra en estado 'iniciada'
             $objAbmCompraEstado = new AbmCompraestado();
             $resultadoCompra = $objAbmCompraEstado -> alta(['idcompra' => $datos['idcompra'], 'idcompraestadotipo' => 1,'cefechaini' => date('Y-m-d H:i:s'), 'cefechafin' => NULL]);

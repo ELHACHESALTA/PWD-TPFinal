@@ -8,7 +8,6 @@
             $objUsuario = $sesionActual -> getUsuario();
             //Busco compras agregadas al carrito por el usuario activo
             $arregloObjCompra = $objAbmCompra -> buscar(['idusuario' => $objUsuario->getIdusuario(),'metodo' => 'carrito']);
-            print_r($arregloObjCompra);
             if (!empty($arregloObjCompra)){
                 if (count($arregloObjCompra) == 1){  //Solo puede haber 1 carrito activo
                     $objAbmCompraItem = new AbmCompraItem();
@@ -50,9 +49,9 @@
                 }
             }else{  //Si no hay carritos activos inicio uno.
                 $compraAgregada = $objAbmCompra -> alta(['idusuario' => $objUsuario->getIdusuario(), 'cofecha' => $date = date('Y-m-d H:i:s'),  'metodo' => 'carrito']);
+                $arregloObjCompra = $objAbmCompra -> buscar(['idusuario' => $objUsuario->getIdusuario(), 'cofecha' => $date = date('Y-m-d H:i:s'), 'metodo' => 'carrito']);
                 if ($compraAgregada){
                     $objAbmCompraItem = new AbmCompraItem();
-                    $arregloObjCompra = $objAbmCompra -> buscar(NULL);
                     $itemAgregado = $objAbmCompraItem -> alta(['idproducto' => $datos['idproducto'], 'idcompra' => $arregloObjCompra[0] -> getIdcompra(), 'cicantidad' => $datos['cantidad']]);
                     if ($itemAgregado){
                         $redireccion = 'Location:../../paginas/carrito.php';
