@@ -101,6 +101,44 @@
 </div>
 
 
+<br>
+<h2>Gestion de CompraItem</h2>
+<p>Pulse los botones para realizar las acciones que desee.</p>
+
+<table id="dgCompraItem" class="easyui-datagrid" style="width:80%"
+        url="../accion/administrador/listarCompraItem.php"
+        toolbar="#toolbarCompraItem"
+        rownumbers="true" fitColumns="true" singleSelect="true">
+    <thead>
+        <tr>
+            <th field="idcompraitem" width="45">Id Compra Item</th>
+            <th field="idproducto" width="40">Id Producto</th>
+            <th field="pronombre" width="50">Nombre Producto</th>
+            <th field="cicantidad" width="35">Cantidad</th>
+            <th field="idcompra" width="40">Id Compra</th>
+            <th field="usnombre" width="45">Comprador</th>
+        </tr>
+    </thead>
+</table>
+<div id="toolbarCompraItem">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="eliminarCompraItem()">Eliminar CompraItem</a>
+</div>
+
+<div id="dlgCompraItem" class="easyui-dialog" style="width:400px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlgCompraItem-buttons'">
+    <form id="fmCompraItem" method="post" novalidate style="margin:0;padding:20px 50px">
+        <div>
+            <input type="hidden" name="idcompraitem" value="idcompraitem">
+        </div>
+        <div>
+            <input type="hidden" name="idcompra" value="idcompra">
+        </div>
+    </form>
+</div>
+<div id="dlgCompraItem-buttons">
+    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveCompraEstado()" style="width:90px">Guardar</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgCompraItem').dialog('close')" style="width:90px">Cancelar</a>
+</div>
+
 <div style="height: 76px;"></div>
 
 <?php

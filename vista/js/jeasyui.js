@@ -660,3 +660,39 @@ function verDetalleCliente(){
         window.location.href = "detalleCompra.php?idcompra="+row.idcompra+"&idrol=3";    
     }                       
 }
+
+
+// FUNCION PARA ELIMINAR COMPRAITEM
+function eliminarCompraItem(){
+    var row = $('#dgCompraItem').datagrid('getSelected');
+    if (row){
+        $.messager.confirm('Confirmar','Desea eliminar el Item definitivamente?',function(r){
+            if (r){
+                $('#fmCompraItem').form('load',row);
+                url = '../accion/administrador/bajaCompraItem.php';
+                $('#fmCompraItem').form('submit',{
+                    url: url,
+                    iframe: false,
+                    onSubmit: function(){
+                        return $(this).form('validate');
+                    },
+                    success: function(result){
+                        var result = eval('('+result+')');
+                        if (result.errorMsg){
+                            $.messager.show({
+                                title: 'Error',
+                                msg: result.errorMsg
+                            });
+                        } else {
+                            $.messager.show({
+                                title: 'Operacion exitosa',
+                                msg: result.respuesta
+                            });
+                            $('#dgCompraItem').datagrid('reload');    // reload the menu data
+                        }
+                    }
+                });
+            }
+        });
+    }
+}
