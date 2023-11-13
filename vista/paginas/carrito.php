@@ -63,11 +63,11 @@
         rownumbers="true" fitColumns="true" singleSelect="true">
     <thead>
         <tr>
-            <th field="foto" width="40">Imagen</th>
             <th field="pronombre" width="85">Nombre del Producto</th>
             <th field="cicantidad" width="50">Cantidad</th>
             <th field="proprecio" width="107">Precio Unitario</th>
             <th field="preciototal" width="90">Precio Total</th>
+            <th field="eliminarCompraItem" width="90"></th>
         </tr>
     </thead>
     <tbody>';
@@ -77,17 +77,21 @@
         $listaObjCompraItem = $objAbmCompraItem->buscar($arreglo2);
         $totalCompra = 0;
         foreach($listaObjCompraItem as $compraItem){
-            echo "<tr><td>foto</td>";
-            echo "<td>".$compraItem->getObjProducto()->getPronombre()."</td>";
+            echo "<tr><td>".$compraItem->getObjProducto()->getPronombre()."</td>";
             echo "<td>".$compraItem->getCicantidad()."</td>";
             echo "<td>".$compraItem->getObjProducto()->getProprecio()."</td>";
             $precioTotalProducto = $compraItem->getCicantidad()*$compraItem->getObjProducto()->getProprecio();
-            echo "<td>".$precioTotalProducto."</td></tr>";
-            $totalCompra = $totalCompra + $precioTotalProducto;          
+            echo "<td>".$precioTotalProducto."</td>";
+            echo "<td><a href='../accion/tienda/bajaCompraItem.php'>Eliminar</a></td></tr>";
+            $totalCompra = $totalCompra + $precioTotalProducto;
         }
-        echo "<tr><td></td><td></td><td></td><td>Precio Total de la Compra:</td>
-        <td>".$totalCompra."</td></tr>";
+        echo "<tr><td></td><td></td><td>Precio Total de la Compra:</td>
+        <td>".$totalCompra."</td><td></td></tr>";
         echo "</tbody></table>";
+        echo '<form method="post" action="tiendaConfirmar.php">';
+        echo '<input type="hidden" name="idcompra" id="idcompra" value="' . $listaComprasUsuarioAct[0] -> getIdcompra() . '">';
+        echo '<div class="mt-5 text-center"><input type="submit" class="btn btn-dark" id="compra" name="compra" value="Comprar"></form>';
+        echo '<a href="../accion/tienda/bajaCompra.php" class="btn btn-secondary" style="margin-left:20px;">Cancelar Compra</a></div>';
     }
 ?>
 

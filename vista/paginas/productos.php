@@ -66,7 +66,7 @@
 <div class="row mt-5">
     <div class="col-2"></div>
     <div class="col-5">
-        <img style="max-width:450px; max-height:450px" src="<?php echo '../img/productos/' . $objProducto -> getIdproducto() . '.jpg?t='.time() ?>">      
+        <img style="max-width:450px; max-height:450px" src="<?php echo '../img/productos/' . $objProducto -> getIdproducto() . '.jpg' ?>">      
     </div>
     <div class="col-3">
         <div class="row">
@@ -98,8 +98,7 @@
                                 echo '<input type="hidden" name="maxStock" id="maxStock" value="' . $objProducto ->  getProcantstock() . '">
                             </div>
                             <div class="col">
-                                <input type="submit" class="btn btn-dark" id="compra" name="compra" value="Comprar">
-                                <input type="submit" class="btn btn-outline-dark" id="orden" name="orden" value="Agregar al carrito">
+                                <input type="submit" class="btn btn-dark" id="compra" name="compra" value="Agregar al carrito">
                             </div>
                             </form>';
                 }else{

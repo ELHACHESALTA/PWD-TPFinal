@@ -64,7 +64,7 @@
             <th field="pronombre" width="60">Nombre</th>
             <th field="prodetalle" width="100">Detalle</th>
             <th field="proprecio" width="70">Precio</th>
-            <th field="prodeshabilitado" width="55">Habilitado</th>
+            <th field="prodeshabilitado" width="55">Estado</th>
         </tr>
     </thead>
 </table>
