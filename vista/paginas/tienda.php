@@ -1,6 +1,6 @@
 <?php
     include_once("../../configuracion.php");
-    $tituloPagina = "Carrito";
+    $tituloPagina = "Tienda";
     include_once("../estructura/encabezadoPrivado.php");
 
     if (isset($arregloSubMenu)) {
@@ -19,7 +19,7 @@
         while (($i < count($arregloSubMenu)) && (!$existeSubMenu)) {
             $subMenuActual = $arregloSubMenu[$i];
             // Verifica si el submenú existe.
-            if ($subMenuActual -> getMedescripcion() == "carrito") {
+            if ($subMenuActual -> getMedescripcion() == "tienda") {
                 $existeSubMenu = true;
             }
             $i++;
@@ -28,7 +28,7 @@
     // Verifica que el usuario tenga los permisos de rol correspondientes.
     $permiso = false;
     foreach ($arregloMenu as $menu){
-        if (($menu -> getObjMenu() -> getMedescripcion() == "carrito") && ($menu -> getObjMenu() -> getMedeshabilitado() == NULL) && $rolActivo -> getIdrol() == 3) {
+        if (($menu -> getObjMenu() -> getMedescripcion() == "tienda") && ($menu -> getObjMenu() -> getMedeshabilitado() == NULL) && $rolActivo -> getIdrol() == 3) {
             $permiso = true;
         }
     }
@@ -49,50 +49,22 @@
 ?>
 
 <?php
-
-    $sesionActual = new Session();
-    $objAbmUsuario = new AbmUsuario();
-    $usuarioActual = $objAbmUsuario -> buscar(['usnombre' => $sesionActual -> getUsuario() -> getUsnombre(), 'uspass' => $sesionActual -> getUsuario() -> getUspass()]);
-    $idUsuario = $usuarioActual[0]->getIdUsuario();
-    $arreglo["idusuario"] = $idUsuario;
-    $arreglo["metodo"] = "carrito";
-    $objAbmCompra = new AbmCompra();
-    $listaComprasUsuarioAct = $objAbmCompra->buscar($arreglo);
-    echo '<table id="detalleCompra" class="easyui-datagrid" style="width:800px"
-        toolbar="#toolbarDetalleCompra"
-        rownumbers="true" fitColumns="true" singleSelect="true">
-    <thead>
-        <tr>
-            <th field="foto" width="40">Imagen</th>
-            <th field="pronombre" width="85">Nombre del Producto</th>
-            <th field="cicantidad" width="50">Cantidad</th>
-            <th field="proprecio" width="107">Precio Unitario</th>
-            <th field="preciototal" width="90">Precio Total</th>
-        </tr>
-    </thead>
-    <tbody>';
-    if(count($listaComprasUsuarioAct) == 1){
-        $arreglo2["idcompra"] = $listaComprasUsuarioAct[0]->getIdcompra();
-        $objAbmCompraItem = new AbmCompraItem();
-        $listaObjCompraItem = $objAbmCompraItem->buscar($arreglo2);
-        $totalCompra = 0;
-        foreach($listaObjCompraItem as $compraItem){
-            echo "<tr><td>foto</td>";
-            echo "<td>".$compraItem->getObjProducto()->getPronombre()."</td>";
-            echo "<td>".$compraItem->getCicantidad()."</td>";
-            echo "<td>".$compraItem->getObjProducto()->getProprecio()."</td>";
-            $precioTotalProducto = $compraItem->getCicantidad()*$compraItem->getObjProducto()->getProprecio();
-            echo "<td>".$precioTotalProducto."</td></tr>";
-            $totalCompra = $totalCompra + $precioTotalProducto;          
+    $objAbmProducto = new AbmProducto();
+    $arregloProductos = $objAbmProducto -> buscar(NULL);
+    echo '<div class="row text-center mb-5">';
+        foreach ($arregloProductos as $producto){
+            if ($producto -> getProdeshabilitado() == NULL){
+                echo '<div class="col-3 mt-5" style="height:350px">';
+                echo '<div style="background-color:#808080; padding:5px; height:350px">';
+                echo '<div id="img" style="height:250px"><a href="productos.php?idproducto=' . $producto -> getIdproducto() . '"><img style="max-height:230px; max-width:230px; margin-top:20px;" src="../img/productos/' . $producto -> getIdproducto() . '.jpg?t=' . time().'"></a></div>';
+                echo '<div id="nombre" style="height:60px"><p>' . $producto -> getPronombre() . '</p></div>';
+                echo '<div><p class="negrita">$' . $producto -> getProprecio() . '</p></div></div></div>';
+            }
         }
-        echo "<tr><td></td><td></td><td></td><td>Precio Total de la Compra:</td>
-        <td>".$totalCompra."</td></tr>";
-        echo "</tbody></table>";
-    }
+    echo '</div>';
 ?>
 
-
-
+<div style="height: 76px;"></div>
 
 <?php
     }
