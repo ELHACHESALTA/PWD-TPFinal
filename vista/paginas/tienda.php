@@ -56,7 +56,12 @@
             if ($producto -> getProdeshabilitado() == NULL){
                 echo '<div class="col-3 mt-5" style="height:350px">';
                 echo '<div style="background-color:#808080; padding:5px; height:350px">';
-                echo '<div id="img" style="height:250px"><a href="productos.php?idproducto=' . $producto -> getIdproducto() . '"><img class="img-fluid" style="max-height:230px; max-width:230px; margin-top:20px;" src="../img/productos/' . $producto -> getIdproducto() . '.jpg"></a></div>';
+                $archivo = "../img/productos/" . $producto->getIdproducto() . ".jpg";
+                if (file_exists($archivo)){
+                    echo '<div id="img" style="height:250px"><a href="productos.php?idproducto=' . $producto -> getIdproducto() . '"><img class="img-fluid" style="max-height:230px; max-width:230px; margin-top:20px;" src="../img/productos/' . $producto -> getIdproducto() . '.jpg"></a></div>';
+                } else {
+                    echo '<div id="img" style="height:250px"><a href="productos.php?idproducto=' . $producto -> getIdproducto() . '"><img class="img-fluid" style="max-height:230px; max-width:230px; margin-top:20px;">Sin Imagen</a></div>';
+                }
                 echo '<div id="nombre" style="height:60px"><p>' . $producto -> getPronombre() . '</p></div>';
                 echo '<div><p class="negrita">$' . $producto -> getProprecio() . '</p></div></div></div>';
             }

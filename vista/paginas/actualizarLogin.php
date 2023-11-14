@@ -96,7 +96,7 @@
 </div>
 <div id="dlgActLog-buttons">
     <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveLogin()" style="width:90px">Guardar</a>
-    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width:90px">Cancelar</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgActLog').dialog('close')" style="width:90px">Cancelar</a>
 </div>
 
 <?php

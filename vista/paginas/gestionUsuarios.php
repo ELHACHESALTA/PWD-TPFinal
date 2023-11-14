@@ -131,11 +131,11 @@
         <h3>Informacion del usuarioRol</h3>
         <div style="margin-bottom:10px">
             <label for="idusuario">Id Usuario:</label>
-            <input name="idusuario" class="easyui-textbox" required="true"style="width:100%">
+            <input name="idusuario" class="easyui-numberbox" required="true"style="width:100%">
         </div>
         <div style="margin-bottom:10px">
             <label for="idrol">Id Rol:</label>
-            <input name="idrol" class="easyui-textbox" required="true" style="width:100%">
+            <input name="idrol" class="easyui-numberbox" required="true" style="width:100%">
         </div>
     </form>
 </div>

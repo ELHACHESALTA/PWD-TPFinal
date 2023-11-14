@@ -87,7 +87,7 @@
         </div>
         <div style="margin-bottom:10px">
             <label for="idpadre">Id padre:</label>
-            <input name="idpadre" class="easyui-textbox" required="true" style="width:100%">
+            <input name="idpadre" class="easyui-numberbox" required="true" style="width:100%">
         </div>
         <!--  <div>
             <input type="hidden" name="medeshabilitado" value="medeshabilitado">
@@ -131,11 +131,11 @@
         <h3>Informacion del menuRol</h3>
         <div style="margin-bottom:10px">
             <label for="idmenu">Id Menu:</label>
-            <input name="idmenu" class="easyui-textbox" required="true"style="width:100%">
+            <input name="idmenu" class="easyui-numberbox" required="true"style="width:100%">
         </div>
         <div style="margin-bottom:10px">
             <label for="idrol">Id Rol:</label>
-            <input name="idrol" class="easyui-textbox" required="true" style="width:100%">
+            <input name="idrol" class="easyui-numberbox" required="true" style="width:100%">
         </div>
     </form>
 </div>

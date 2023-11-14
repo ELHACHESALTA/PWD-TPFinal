@@ -66,7 +66,13 @@
 <div class="row mt-5">
     <div class="col-2"></div>
     <div class="col-5">
+        <?php
+        $archivo = "../img/productos/" . $objProducto->getIdproducto() . ".jpg";
+        if (file_exists($archivo)){
+            ?>
+        
         <img style="max-width:450px; max-height:450px" src="<?php echo '../img/productos/' . $objProducto -> getIdproducto() . '.jpg' ?>">      
+        <?php } ?>
     </div>
     <div class="col-3">
         <div class="row">
