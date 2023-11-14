@@ -48,28 +48,33 @@
     } else {
 ?>
 
+<a class="btn btn-lg btn-dark text-center text-white float-start position-absolute d-flex justify-content-start" href="../paginas/inicio.php"><i class="bi bi-arrow-90deg-left"></i></a>
+<h1 class="display-5 pb-3 fw-bold">Tienda</h1>
 <?php
     $objAbmProducto = new AbmProducto();
     $arregloProductos = $objAbmProducto -> buscar(NULL);
-    echo '<div class="row text-center mb-5">';
+    echo '<div class="row text-center">';
         foreach ($arregloProductos as $producto){
             if ($producto -> getProdeshabilitado() == NULL){
-                echo '<div class="col-3 mt-5" style="height:350px">';
-                echo '<div style="background-color:#808080; padding:5px; height:350px">';
+                echo "<div class='col-3 mb-5'>";
+                echo "    <div class='card text-white bg-dark'>";
                 $archivo = "../img/productos/" . $producto->getIdproducto() . ".jpg";
                 if (file_exists($archivo)){
-                    echo '<div id="img" style="height:250px"><a href="productos.php?idproducto=' . $producto -> getIdproducto() . '"><img class="img-fluid" style="max-height:230px; max-width:230px; margin-top:20px;" src="../img/productos/' . $producto -> getIdproducto() . '.jpg"></a></div>';
+                    echo "    <img src='../img/productos/" . $producto -> getIdproducto() . ".jpg' class='card-img-top rounded-bottom' alt='articulo de tienda'>";
                 } else {
-                    echo '<div id="img" style="height:250px"><a href="productos.php?idproducto=' . $producto -> getIdproducto() . '"><img class="img-fluid" style="max-height:230px; max-width:230px; margin-top:20px;">Sin Imagen</a></div>';
+                    echo "    <img src='../img/productos/0.jpg' class='card-img-top rounded-bottom' alt='articulo de tienda'>";
                 }
-                echo '<div id="nombre" style="height:60px"><p>' . $producto -> getPronombre() . '</p></div>';
-                echo '<div><p class="negrita">$' . $producto -> getProprecio() . '</p></div></div></div>';
+                echo "        <div class='card-body'>";
+                echo "            <h5 class='card-title fw-bolder'>" . $producto -> getPronombre() . "</h5>";
+                echo "            <a href='productos.php?idproducto=" . $producto -> getIdproducto() . "' class='stretched-link'></a>";
+                echo "            <p class='card-text'>Precio: $" . $producto -> getProprecio() . "</p>";
+                echo "        </div>";
+                echo "    </div>";
+                echo "</div>";
             }
         }
     echo '</div>';
 ?>
-
-<div style="height: 76px;"></div>
 
 <?php
     }

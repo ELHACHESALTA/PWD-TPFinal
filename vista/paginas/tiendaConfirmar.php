@@ -48,20 +48,23 @@
     } else {
 ?>
 
+<a class="btn btn-lg btn-dark text-center text-white float-start position-absolute d-flex justify-content-start" href="../paginas/tienda.php"><i class="bi bi-arrow-90deg-left"></i></a>
+
+
 <?php
     $datos=data_submitted();
     if($datos['compra']=="Comprar" && isset($datos['idcompra'])){
         $objAbmCompraItem = new AbmCompraitem();
         $arregloItems = $objAbmCompraItem -> buscar(['idcompra' => $datos['idcompra']]);
         if (!empty($arregloItems)){
-            echo '<h1 class="text-center" style="margin-top: 30px;">Confirmar Compra</h1>';
+            echo '<h1 class="display-5 pb-3 fw-bold">Confirmar Compra</h1>';
             $totalPagar = 0;
             foreach($arregloItems as $item){
                 echo '<div class="text-center">Producto: ' . $item -> getObjProducto() -> getPronombre();
-                echo '&nbsp;&nbsp;Cantidad:' . $item -> getCicantidad() . '</div>';
+                echo '&nbsp;&nbsp;Cantidad: ' . $item -> getCicantidad() . '</div>';
                 $totalPagar += ( $item -> getObjProducto() -> getProprecio()) * $item->getCicantidad();
             }
-            echo '<div class="text-center" style="margin-top: 50px;">Total a pagar: $' . $totalPagar . '</div>';
+            echo '<div class="text-center mt-5"><b>Total a pagar: </b>$' . $totalPagar . '</div>';
             echo '<form method="post" action="../accion/tienda/accionTiendaConfirmar.php" class="text-center">';
             echo '<input type="hidden" name="idcompra" id="idcompra" value="' . $datos['idcompra'] . '">';
             echo '<input type="submit" value="Comprar" class="btn btn-dark m-3"></form>';

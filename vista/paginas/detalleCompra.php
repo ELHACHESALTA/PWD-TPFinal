@@ -16,37 +16,43 @@ if (!$permiso) {
 } else {
 ?>
 
-<table id="detalleCompra" class="easyui-datagrid" style="width:800px"
-        toolbar="#toolbarDetalleCompra"
-        rownumbers="true" fitColumns="true" singleSelect="true">
-    <thead>
-        <tr>
-            <th field="foto" width="40">Imagen</th>
-            <th field="pronombre" width="85">Nombre del Producto</th>
-            <th field="cicantidad" width="50">Cantidad</th>
-            <th field="proprecio" width="107">Precio Unitario</th>
-            <th field="preciototal" width="90">Precio Total</th>
-        </tr>
-    </thead>
-    <tbody>
-<?php
-    $arreglo["idcompra"] = $datos["idcompra"];
-    $objAbmCompraItem = new AbmCompraItem();
-    $arregloItems = $objAbmCompraItem->buscar($arreglo);
-    $totalCompra = 0;
-    foreach ($arregloItems as $compraItem){
-        echo "<tr><td>foto</td>";
-        echo "<td>".$compraItem->getObjProducto()->getPronombre()."</td>";
-        echo "<td>".$compraItem->getCicantidad()."</td>";
-        echo "<td>".$compraItem->getObjProducto()->getProprecio()."</td>";
-        $precioTotalProducto = $compraItem->getCicantidad()*$compraItem->getObjProducto()->getProprecio();
-        echo "<td>".$precioTotalProducto."</td></tr>";
-        $totalCompra = $totalCompra + $precioTotalProducto;
-    }
-    echo "<tr><td></td><td></td><td></td><td>Precio Total de la Compra:</td>
-    <td>".$totalCompra."</td></tr>";
-    echo "</tbody></table>";
-?>
+<a class="btn btn-lg btn-dark text-center text-white float-start position-absolute d-flex justify-content-start" href="../paginas/inicio.php"><i class="bi bi-arrow-90deg-left"></i></a>
+<h1 class="display-5 pb-3 fw-bold">Detalle Compra</h1>
+
+<div class="d-flex justify-content-center">
+    <table id="detalleCompra" class="easyui-datagrid" style="width:800px"
+            toolbar="#toolbarDetalleCompra"
+            rownumbers="true" fitColumns="true" singleSelect="true">
+        <thead>
+            <tr>
+                <th field="foto" width="40">Imagen</th>
+                <th field="pronombre" width="85">Nombre del Producto</th>
+                <th field="cicantidad" width="50">Cantidad</th>
+                <th field="proprecio" width="107">Precio Unitario</th>
+                <th field="preciototal" width="90">Precio Total</th>
+            </tr>
+        </thead>
+        <tbody>
+    <?php
+        $arreglo["idcompra"] = $datos["idcompra"];
+        $objAbmCompraItem = new AbmCompraItem();
+        $arregloItems = $objAbmCompraItem->buscar($arreglo);
+        $totalCompra = 0;
+        foreach ($arregloItems as $compraItem){
+            echo "<tr><td>foto</td>";
+            echo "<td>".$compraItem->getObjProducto()->getPronombre()."</td>";
+            echo "<td>".$compraItem->getCicantidad()."</td>";
+            echo "<td>".$compraItem->getObjProducto()->getProprecio()."</td>";
+            $precioTotalProducto = $compraItem->getCicantidad()*$compraItem->getObjProducto()->getProprecio();
+            echo "<td>".$precioTotalProducto."</td></tr>";
+            $totalCompra = $totalCompra + $precioTotalProducto;
+        }
+        echo "<tr><td></td><td></td><td></td><td>Precio Total de la Compra:</td>
+        <td>".$totalCompra."</td></tr>";
+        echo "</tbody></table>";
+    ?>
+</div>
+
 <?php
     }
 include_once("../estructura/pie.php");

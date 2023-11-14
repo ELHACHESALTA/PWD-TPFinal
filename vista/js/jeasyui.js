@@ -76,7 +76,7 @@ function destroyUser(){
 
 // FUNCIONES PARA LA GESTION DE USUARIOROL
 function newUsuarioRol(){
-    $('#dlg2').dialog('open').dialog('center').dialog('setTitle','Nuevo UsuarioRol');
+    $('#dlg2').dialog('open').dialog('center').dialog('setTitle','Nueva relación Usuario-Rol');
     $('#fm2').form('clear');
     url = '../accion/administrador/altaUsuarioRol.php';
 }

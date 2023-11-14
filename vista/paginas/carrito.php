@@ -48,8 +48,10 @@
     } else {
 ?>
 
-<?php
+<a class="btn btn-lg btn-dark text-center text-white float-start position-absolute d-flex justify-content-start" href="../paginas/inicio.php"><i class="bi bi-arrow-90deg-left"></i></a>
+<h1 class="display-5 pb-3 fw-bold">Carrito</h1>
 
+<?php
     $sesionActual = new Session();
     $objAbmUsuario = new AbmUsuario();
     $usuarioActual = $objAbmUsuario -> buscar(['usnombre' => $sesionActual -> getUsuario() -> getUsnombre(), 'uspass' => $sesionActual -> getUsuario() -> getUspass()]);
@@ -58,7 +60,8 @@
     $arreglo["metodo"] = "carrito";
     $objAbmCompra = new AbmCompra();
     $listaComprasUsuarioAct = $objAbmCompra->buscar($arreglo);
-    echo '<table id="detalleCompra" class="easyui-datagrid" style="width:800px"
+    echo '<div class="d-flex justify-content-center">
+    <table id="detalleCompra" class="easyui-datagrid" style="width:800px"
         toolbar="#toolbarDetalleCompra"
         rownumbers="true" fitColumns="true" singleSelect="true">
     <thead>
@@ -70,7 +73,7 @@
             <th field="eliminarCompraItem" width="90"></th>
         </tr>
     </thead>
-    <tbody>';
+    <tbody></div>';
     if(count($listaComprasUsuarioAct) == 1){
         $arreglo2["idcompra"] = $listaComprasUsuarioAct[0]->getIdcompra();
         $objAbmCompraItem = new AbmCompraItem();
@@ -89,14 +92,11 @@
         <td>".$totalCompra."</td><td></td></tr>";
         echo "</tbody></table>";
         echo '<form method="post" action="tiendaConfirmar.php">';
-        echo '<input type="hidden" name="idcompra" id="idcompra" value="' . $listaComprasUsuarioAct[0] -> getIdcompra() . '">';
+        echo '<input type="hidden" name="idcompra" id="idcompra" value="' . $listaComprasUsuarioAct[0] -> getIdcompra() . '"></div>';
         echo '<div class="mt-5 text-center"><input type="submit" class="btn btn-dark" id="compra" name="compra" value="Comprar"></form>';
-        echo '<a href="../accion/tienda/bajaCompra.php" class="btn btn-secondary" style="margin-left:20px;">Cancelar Compra</a></div>';
+        echo '<a href="../accion/tienda/bajaCompra.php" class="btn btn-secondary" style="margin-left:20px;">Cancelar Compra</a>';
     }
 ?>
-
-
-
 
 <?php
     }
