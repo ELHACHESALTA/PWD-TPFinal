@@ -34,17 +34,17 @@
     }
     if (!$permiso) {
         echo "<a class='btn btn-lg btn-dark text-center text-white float-start position-absolute d-flex justify-content-start mt-2' href='inicio.php'><i class='bi bi-arrow-90deg-left'></i></a>";
-        echo "<br><br><br><h1 class='display-5 pb-3 fw-bold'>No puede gestionar usuarios ya que no tiene los permisos necesarios en su rol.</h1>";
+        echo "<br><br><br><h1 class='display-5 pb-3 fw-bold'>No puede gestionar productos ya que no tiene los permisos necesarios en su rol o el menú se encuentra deshabilitado.</h1>";
     // Verifica que el menu padre no se encuentre deshabilitado
     } elseif (($rolActivo -> getIdrol() == 2) && (!isset($arregloMenuPadre))) {
         echo "<a class='btn btn-lg btn-dark text-center text-white float-start position-absolute d-flex justify-content-start mt-2' href='inicio.php'><i class='bi bi-arrow-90deg-left'></i></a>";
-        echo "<br><br><br><h1 class='display-5 pb-3 fw-bold'>No puede gestionar usuarios ya que la página se encuentra deshabilitada en una jerarquía superior del menú.</h1>";
+        echo "<br><br><br><h1 class='display-5 pb-3 fw-bold'>No puede gestionar productos ya que la página se encuentra deshabilitada en una jerarquía superior del menú.</h1>";
     } elseif (!$subMenuDeshabilitado) {
         echo "<a class='btn btn-lg btn-dark text-center text-white float-start position-absolute d-flex justify-content-start mt-2' href='inicio.php'><i class='bi bi-arrow-90deg-left'></i></a>";
-        echo "<br><br><br><h1 class='display-5 pb-3 fw-bold'>No puede gestionar usuarios ya que la página se encuentra deshabilitada.</h1>";
+        echo "<br><br><br><h1 class='display-5 pb-3 fw-bold'>No puede gestionar productos ya que la página se encuentra deshabilitada.</h1>";
     } elseif (!$existeSubMenu) {
         echo "<a class='btn btn-lg btn-dark text-center text-white float-start position-absolute d-flex justify-content-start mt-2' href='inicio.php'><i class='bi bi-arrow-90deg-left'></i></a>";
-        echo "<br><br><br><h1 class='display-5 pb-3 fw-bold'>No puede gestionar usuarios ya que la página no existe.</h1>";
+        echo "<br><br><br><h1 class='display-5 pb-3 fw-bold'>No puede gestionar productos ya que la página no existe.</h1>";
     } else {
 ?>
 

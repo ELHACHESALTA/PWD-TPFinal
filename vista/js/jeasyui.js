@@ -502,7 +502,7 @@ function destroyCompra() {
 function muestraDetalleCompra(){
     var row = $('#dgCompraEstado').datagrid('getSelected');
     if (row){
-        window.location.href = "detalleCompra.php?idcompra="+row.idcompra+"&idrol=1";    
+        window.location.href = "detalleCompra.php?idcompra="+row.idcompra;    
     }
 }
 
@@ -657,7 +657,7 @@ function cancelarCompraCliente(){
 function verDetalleCliente(){
     var row = $('#dgSeg').datagrid('getSelected');
     if (row){
-        window.location.href = "detalleCompra.php?idcompra="+row.idcompra+"&idrol=3";    
+        window.location.href = "detalleCompra.php?idcompra="+row.idcompra;    
     }                       
 }
 

@@ -1,23 +1,21 @@
 <?php
 include_once("../../configuracion.php");
-$tituloPagina = "Tienda de Sillones";
-$sesionInicial = new Session();
-if ($sesionInicial -> validar()) {
-    include_once("../estructura/encabezadoPrivado.php");
+$tituloPagina = "Detalle de la Compra";
+include_once("../estructura/encabezadoPrivado.php");
+
+// Verifica que el usuario tenga los permisos de rol correspondientes.
+$permiso = false;
+foreach ($arregloMenu as $menu){
+    if ($rolActivo -> getIdrol() == 3 || $rolActivo -> getIdrol() == 1 || $rolActivo -> getIdrol() == 2) {
+        $permiso = true;
+    }
+}
+if (!$permiso) {
+    echo "<a class='btn btn-lg btn-dark text-center text-white float-start position-absolute d-flex justify-content-start mt-2' href='inicio.php'><i class='bi bi-arrow-90deg-left'></i></a>";
+    echo "<br><br><br><h1 class='display-5 pb-3 fw-bold'>No puede acceder al detalle de la compra ya que no tiene los permisos necesarios en su rol o el menú se encuentra deshabilitado.</h1>";
 } else {
-    $sesionInicial -> cerrar();
-    include_once("../estructura/encabezadoPublico.php");
-}
-$datos = data_submitted();
-if ($datos["idrol"] == 1){
-    echo '<a class="btn btn-lg btn-dark text-center text-white float-start position-absolute d-flex justify-content-start mt-2" href="gestionCompras.php"><i class="bi bi-arrow-90deg-left"></i></a>';
-} elseif ($datos["idrol"] == 3){
-    echo '<a class="btn btn-lg btn-dark text-center text-white float-start position-absolute d-flex justify-content-start mt-2" href="seguimiento.php"><i class="bi bi-arrow-90deg-left"></i></a>';
-}
-
-
-
 ?>
+
 <table id="detalleCompra" class="easyui-datagrid" style="width:800px"
         toolbar="#toolbarDetalleCompra"
         rownumbers="true" fitColumns="true" singleSelect="true">
@@ -50,5 +48,6 @@ if ($datos["idrol"] == 1){
     echo "</tbody></table>";
 ?>
 <?php
+    }
 include_once("../estructura/pie.php");
 ?>
