@@ -8,10 +8,14 @@ $objAbmUsuario = new AbmUsuario();
 $objAbmRol = new AbmRol();
 if ($objAbmUsuario->buscar($arreglo1)){
     if ($objAbmRol->buscar($arreglo2)){
-        if($objAbmUsuarioRol->alta($datos)){
-            $respuesta["respuesta"] = "Se dio de alta el UsuarioRol correctamente!";
+        if ($objAbmUsuarioRol->buscar($datos)){
+            $respuesta["errorMsg"] = "Ya existe esa relación con el idusuario y el idrol ingresados!";
         } else {
-            $respuesta["errorMsg"] = "No se pudo realizar el alta del UsuarioRol";
+            if($objAbmUsuarioRol->alta($datos)){
+                $respuesta["respuesta"] = "Se dio de alta el UsuarioRol correctamente!";
+            } else {
+                $respuesta["errorMsg"] = "No se pudo realizar el alta del UsuarioRol";
+            }
         }
     } else {
         $respuesta["errorMsg"] = "No existe un Rol con el id ingresado";

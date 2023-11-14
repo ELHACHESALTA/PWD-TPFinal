@@ -28,7 +28,7 @@
             $datos = data_submitted();
             $sesionActual = new Session();
             // Si no hay una sesión activa me envía a la página de inicio.
-            if (!$sesionActual -> activa()) {
+            if (!$sesionActual -> activa() || !$sesionActual->validar()) {
                 header("Location:../paginas/inicio.php");
             }
             // Obtengo los roles correspondientes a la sesión actual.
