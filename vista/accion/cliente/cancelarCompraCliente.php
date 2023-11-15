@@ -37,7 +37,27 @@ if ($datos["idcompraestadotipo"] == 1){
                 $datos["cefechaini"] = $fechaActual;
                 $datos["cefechafin"] = $fechaActual;
                 if($objAbmCompraEstado->alta($datos)){
-                    $respuesta["respuesta"] = "Se canceló la compra correctamente";
+                    $objAbmCompraItem = new AbmCompraItem();
+                    $listaCompraItem = $objAbmCompraItem->buscar($arreglo);
+                    if ($listaCompraItem){
+                        foreach($listaCompraItem as $compraItem){
+                            $cantidadItems = $compraItem->getCicantidad();
+                            $objProducto = $compraItem->getObjProducto();
+                            $nuevoStock = $cantidadItems + $objProducto->getProcantstock();
+                            $objAbmProducto = new AbmProducto();
+                            $arregloParaModificar["idproducto"] = $objProducto->getIdproducto();
+                            $arregloParaModificar["pronombre"] = $objProducto->getPronombre();
+                            $arregloParaModificar["prodetalle"] = $objProducto->getProdetalle();
+                            $arregloParaModificar["procantstock"] = $nuevoStock;
+                            $arregloParaModificar["proprecio"] = $objProducto->getProprecio();
+                            $arregloParaModificar["prodeshabilitado"] = $objProducto->getProdeshabilitado();
+                            if ($objAbmProducto->modificacion($arregloParaModificar)){
+                                $respuesta["respuesta"] = "Se canceló la compra y se actualizó el stock correctamente";
+                            } else {
+                                $respuesta["errorMsg"] = "No se pudo actualizar el stock";    
+                            }
+                        }
+                    }
                 } else {
                     $respuesta["errorMsg"] = "No se pudo cancelar la compra";    
                 }

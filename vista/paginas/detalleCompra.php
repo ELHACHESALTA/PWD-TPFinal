@@ -34,7 +34,7 @@ if ($rolActivo -> getIdrol() == 3) {
                 <th field="pronombre" width="85">Nombre del Producto</th>
                 <th field="cicantidad" width="50">Cantidad</th>
                 <th field="proprecio" width="107">Precio Unitario</th>
-                <th field="preciototal" width="90">Precio Total</th>
+                <th field="preciototal" width="105">Precio Total</th>
             </tr>
         </thead>
         <tbody>
@@ -51,8 +51,7 @@ if ($rolActivo -> getIdrol() == 3) {
             echo "<td>".$precioTotalProducto."</td></tr>";
             $totalCompra = $totalCompra + $precioTotalProducto;
         }
-        echo "<tr><td></td><td></td><td></td><td>Precio Total de la Compra:</td>
-        <td>".$totalCompra."</td></tr>";
+        echo "<tr><td></td><td></td><td></td><td>Precio Total de la Compra: ".$totalCompra."</td></tr>";
         echo "</tbody></table>";
     ?>
 </div>

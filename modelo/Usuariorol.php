@@ -87,7 +87,6 @@
             $sql = "UPDATE usuariorol 
             SET idrol = " . $this -> getObjRol() -> getIdrol() . 
             " WHERE idusuario = " . $this -> getObjUsuario() -> getIdusuario();
-            echo $sql;
             if ($base -> Iniciar()){
                 if ($base -> Ejecutar($sql)){
                     $respuesta = true;

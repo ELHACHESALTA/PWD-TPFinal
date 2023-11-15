@@ -153,7 +153,7 @@ INSERT INTO `menurol` (`idmenu`, `idrol`) VALUES
 CREATE TABLE `producto` (
     `idproducto` bigint(20) NOT NULL,
     `pronombre` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-    `prodetalle` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+    `prodetalle` varchar(512) COLLATE utf8_unicode_ci NOT NULL,
     `proprecio` int(11) NOT NULL,
     `prodeshabilitado` timestamp NULL DEFAULT current_timestamp(),
     `procantstock` int(11) NOT NULL
@@ -164,14 +164,14 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`idproducto`, `pronombre`, `prodetalle`, `proprecio`, `prodeshabilitado`, `procantstock`) VALUES
-(1, 'sillon 1', 'descripcion1', 15000, NULL, 90),
-(2, 'sillon 2', 'descripcion2', 15001, NULL, 91),
-(3, 'sillon 3', 'descripcion3', 15002, NULL, 92),
-(4, 'sillon 4', 'descripcion4', 15003, NULL, 93),
-(5, 'sillon 5', 'descripcion5', 15004, NULL, 94),
-(6, 'sillon 6', 'descripcion6', 15005, NULL, 95),
-(7, 'sillon 7', 'descripcion7', 15006, NULL, 96),
-(8, 'sillon 8', 'descripcion8', 15007, NULL, 97);
+(1, 'Sillón Frida', 'Super cómodos, elegantes y funcionales.', 15000, NULL, 62),
+(2, 'Sofa Sofia', 'Sofá SOFÍA, de lineas modernas, patas cromadas, con apoya cabeza reclinable en 6 posiciones', 20000, NULL, 13),
+(3, 'Sofa Jeff', 'Apoyacabezas reclinable en 6 posiciones. Estructura y patas en hierro negro.', 25000, NULL, 28),
+(4, 'Sofa Sharon', 'Realizado en madera maciza secada en horno de 2 pulgadas cepillada en sus 4 caras.', 30000, NULL, 6), 
+(5, 'Sofa Bock', 'Sofá BOCK con apoya cabeza reclinable en 6 posiciones, estructura y patas en hierro negro.', 35000, NULL, 81),
+(6, 'Sofa Jackson', 'Realizado en madera maciza secada en horno de 2 pulgadas cepillada en sus 4 caras.', 40000, NULL, 95),
+(7, 'Sofa Mellow', 'Los almohadones tienen cierre y doble funda para facilitar su limpieza.', 45000, NULL, 3),
+(8, 'Esquinero Warren', 'Los almohadones tienen cierre y doble funda para facilitar su limpieza.', 50000, NULL, 1);
 
 -- --------------------------------------------------------
 
