@@ -5,16 +5,17 @@
         $objAbmCompra = new AbmCompra();
         $compraCargar = $objAbmCompra -> buscar(['idcompra' => $datos['idcompra']]);
         $objAbmCompraItem = new AbmCompraitem();
-        $arregloItemsCargar = $objAbmCompraItem -> buscar(['idcompra']);
+        $arregloItemsCargar = $objAbmCompraItem -> buscar(['idcompra' => $datos['idcompra']]);
         $objAbmProducto = new AbmProducto();
         $sinStock = false;
         foreach($arregloItemsCargar as $item){
             $productoCarga = $item -> getObjProducto();
             $cantidadDisponible = ($productoCarga -> getProcantstock())-($item -> getCicantidad());
-            if ($cantidadDisponible == 0){
+            if ($cantidadDisponible < 0){
                 $sinStock = true;
                 //Elimino el producto sin stock del carrito
                 $objAbmCompraItem -> baja(['idcompraitem' => $item -> getIdcompraitem()]);
+                $objAbmCompra -> baja(['idcompra' => $datos['idcompra']]);
             }
         }
         if (!$sinStock){

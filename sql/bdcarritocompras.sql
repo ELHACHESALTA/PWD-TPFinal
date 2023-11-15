@@ -344,7 +344,7 @@ ALTER TABLE `compraitem`
 -- AUTO_INCREMENT de la tabla `menu`
 --
 ALTER TABLE `menu`
-    MODIFY `idmenu` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+    MODIFY `idmenu` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
