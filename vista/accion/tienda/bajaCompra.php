@@ -14,5 +14,5 @@
             $objAbmCompra -> baja(['idcompra'=>$arregloObjCompra[0] -> getIdcompra()]);
         }
     }
-    header("Location:../../paginas/carrito.php");
+    header("Location:../../paginas/tienda.php");
 ?>

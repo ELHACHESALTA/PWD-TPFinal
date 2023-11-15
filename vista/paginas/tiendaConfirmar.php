@@ -48,7 +48,7 @@
     } else {
 ?>
 
-<a class="btn btn-lg btn-dark text-center text-white float-start position-absolute d-flex justify-content-start" href="../paginas/tienda.php"><i class="bi bi-arrow-90deg-left"></i></a>
+<a class="btn btn-lg btn-dark text-center text-white float-start position-absolute d-flex justify-content-start" href="../paginas/carrito.php"><i class="bi bi-arrow-90deg-left"></i></a>
 
 
 <?php

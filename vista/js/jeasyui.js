@@ -80,7 +80,14 @@ function newUsuarioRol(){
     $('#fm2').form('clear');
     url = '../accion/administrador/altaUsuarioRol.php';
 }
-
+function editUsuarioRol(){
+    var row = $('#dg2').datagrid('getSelected');
+    if (row){
+        $('#dlg5').dialog('open').dialog('center').dialog('setTitle','Editar relación Usuario-Rol');
+        $('#fm5').form('load',row);
+        url = '../accion/administrador/editarUsuarioRol.php';
+    }
+}
 function saveUsuarioRol(){
     $('#fm2').form('submit',{
         url: url,
@@ -101,6 +108,32 @@ function saveUsuarioRol(){
                     msg: result.respuesta
                 });
                 $('#dlg2').dialog('close');        // close the dialog
+                $('#dg2').datagrid('reload');    // reload the user data
+            }
+        }
+    });
+}
+
+function saveUsuarioRolEdit() {
+    $('#fm5').form('submit',{
+        url: url,
+        iframe: false,
+        onSubmit: function(){
+            return $(this).form('validate');
+        },
+        success: function(result){
+            var result = eval('('+result+')');
+            if (result.errorMsg){
+                $.messager.show({
+                    title: 'Error',
+                    msg: result.errorMsg
+                });
+            } else {
+                $.messager.show({
+                    title: 'Operacion exitosa',
+                    msg: result.respuesta
+                });
+                $('#dlg5').dialog('close');        // close the dialog
                 $('#dg2').datagrid('reload');    // reload the user data
             }
         }

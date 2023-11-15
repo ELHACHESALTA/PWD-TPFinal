@@ -14,8 +14,27 @@ for($i=0; $i < count($listaCompraEstado); $i++){
     }
 }
 if ($estadoMasAvanzado == 1){
+    $objAbmCompraItem1 = new AbmCompraItem();
+    $arregloObjCompraItem = $objAbmCompraItem1 -> buscar($arreglo1);
+    $cantidadDevolver = $arregloObjCompraItem[0] -> getCicantidad();
+    $objAbmProducto = new AbmProducto();
+    $idProductoDevolver = $arregloObjCompraItem[0] -> getObjProducto() -> getIdproducto();
+    $arregloObjProducto = $objAbmProducto -> buscar(['idproducto' => $idProductoDevolver]);
+    $cantidadActual = $arregloObjProducto[0] -> getProcantstock();
+    $nuevaCantidad = $cantidadActual + $cantidadDevolver;
+
+    $productoModificado['idproducto'] = $idProductoDevolver;
+    $productoModificado['pronombre'] = $arregloObjProducto[0] -> getPronombre();
+    $productoModificado['prodetalle'] = $arregloObjProducto[0] -> getProdetalle();
+    $productoModificado['procantstock'] = $nuevaCantidad;
+    $productoModificado['proprecio'] = $arregloObjProducto[0] -> getProPrecio();
+    $productoModificado['prodeshabilitado'] = $arregloObjProducto[0] -> getProdeshabilitado();
     if ($objAbmCompraItem->baja($arreglo1)){
-        $respuesta["respuesta"] = "La compraItem se dio de baja correctamente";
+        if ($objAbmProducto -> modificacion($productoModificado)) {
+            $respuesta["respuesta"] = "La compraItem se dio de baja correctamente y se devolvieron los articulos al stock";
+        } else {
+            $respuesta["errorMsg"] = "No se pudo dar de baja la compraItem";
+        }
     } else {
         $respuesta["errorMsg"] = "No se pudo dar de baja la compraItem";
     }

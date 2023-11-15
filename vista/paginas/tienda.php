@@ -55,7 +55,7 @@
     $arregloProductos = $objAbmProducto -> buscar(NULL);
     echo '<div class="row text-center">';
         foreach ($arregloProductos as $producto){
-            if ($producto -> getProdeshabilitado() == NULL){
+            if ($producto -> getProdeshabilitado() == NULL && $producto -> getProcantstock() > 0) {
                 echo "<div class='col-3 mb-5'>";
                 echo "    <div class='card text-white bg-dark'>";
                 $archivo = "../img/productos/" . $producto->getIdproducto() . ".jpg";

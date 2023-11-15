@@ -81,17 +81,13 @@
             return $resp;
         }
 
-        //En funcion modificar de la clase usuariorol: no se debería poder modificar ninguno
-        //de los dos atributos, no? ya que ambos atributos forman parte de la clave primaria
-        /*
         public function modificar() {
             $respuesta = false;
             $base = new BaseDatos();
             $sql = "UPDATE usuariorol 
-            SET tipo = '" . $this -> getTipo() . 
-            "', descripcion = '" . $this -> getDescripcion() . 
-            "', contacto = '" . $this -> getContacto() . 
-            "' WHERE numReclamo = " . $this -> getNumReclamo();
+            SET idrol = " . $this -> getObjRol() -> getIdrol() . 
+            " WHERE idusuario = " . $this -> getObjUsuario() -> getIdusuario();
+            echo $sql;
             if ($base -> Iniciar()){
                 if ($base -> Ejecutar($sql)){
                     $respuesta = true;
@@ -103,7 +99,6 @@
             }
             return $respuesta;
         }
-        */
 
         public function eliminar() {
             $respuesta = false;

@@ -14,9 +14,15 @@ if (!$permiso) {
     echo "<a class='btn btn-lg btn-dark text-center text-white float-start position-absolute d-flex justify-content-start mt-2' href='inicio.php'><i class='bi bi-arrow-90deg-left'></i></a>";
     echo "<br><br><br><h1 class='display-5 pb-3 fw-bold'>No puede acceder al detalle de la compra ya que no tiene los permisos necesarios en su rol o el menú se encuentra deshabilitado.</h1>";
 } else {
-?>
 
-<a class="btn btn-lg btn-dark text-center text-white float-start position-absolute d-flex justify-content-start" href="../paginas/inicio.php"><i class="bi bi-arrow-90deg-left"></i></a>
+if ($rolActivo -> getIdrol() == 3) {
+    echo "<a class='btn btn-lg btn-dark text-center text-white float-start position-absolute d-flex justify-content-start mt-2' href='seguimiento.php'><i class='bi bi-arrow-90deg-left'></i></a>";
+} elseif ($rolActivo -> getIdrol() == 2) {
+    echo "<a class='btn btn-lg btn-dark text-center text-white float-start position-absolute d-flex justify-content-start mt-2' href='gestionComprasDeposito.php'><i class='bi bi-arrow-90deg-left'></i></a>";
+} elseif ($rolActivo -> getIdrol() == 1) {
+    echo "<a class='btn btn-lg btn-dark text-center text-white float-start position-absolute d-flex justify-content-start mt-2' href='gestionCompras.php'><i class='bi bi-arrow-90deg-left'></i></a>";
+}
+?>
 <h1 class="display-5 pb-3 fw-bold">Detalle Compra</h1>
 
 <div class="d-flex justify-content-center">
@@ -25,7 +31,6 @@ if (!$permiso) {
             rownumbers="true" fitColumns="true" singleSelect="true">
         <thead>
             <tr>
-                <th field="foto" width="40">Imagen</th>
                 <th field="pronombre" width="85">Nombre del Producto</th>
                 <th field="cicantidad" width="50">Cantidad</th>
                 <th field="proprecio" width="107">Precio Unitario</th>
@@ -39,7 +44,6 @@ if (!$permiso) {
         $arregloItems = $objAbmCompraItem->buscar($arreglo);
         $totalCompra = 0;
         foreach ($arregloItems as $compraItem){
-            echo "<tr><td>foto</td>";
             echo "<td>".$compraItem->getObjProducto()->getPronombre()."</td>";
             echo "<td>".$compraItem->getCicantidad()."</td>";
             echo "<td>".$compraItem->getObjProducto()->getProprecio()."</td>";

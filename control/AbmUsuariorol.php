@@ -91,18 +91,16 @@
          * @param array $param
          * @return boolean
          */
-        /*
         public function modificacion($param){
             $resp = false;
             if ($this -> seteadosCamposClaves($param)) {
-                $objRol = $this -> cargarObjeto($param);
-                if ($objRol != null and $objRol -> modificar()) {
+                $objUsuarioRol = $this -> cargarObjeto($param);
+                if ($objUsuarioRol != null and $objUsuarioRol -> modificar()) {
                     $resp = true;
                 }
             }
             return $resp;
         }
-        */
 
         /**
          * Permite buscar un objeto.

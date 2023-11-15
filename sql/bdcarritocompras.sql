@@ -214,8 +214,7 @@ CREATE TABLE `usuario` (
 INSERT INTO `usuario` (`idusuario`, `usnombre`, `uspass`, `usmail`, `usdeshabilitado`) VALUES
 (1, 'usuario1', '144cce165e9b405a014d015e9059a7fd', 'us1@gmail.com', NULL),
 (2, 'usuario2', 'dddc3c797b55e57459abadac14706030', 'us2@gmail.com', NULL),
-(3, 'usuario3', '4f92b80c0fca1a495ad8ff524c630a8d', 'us3@gmail.com', NULL),
-(4, 'usuario4', '2890348f6452c179527139b77e81da3b', 'us4@gmail.com', NULL);
+(3, 'usuario3', '4f92b80c0fca1a495ad8ff524c630a8d', 'us3@gmail.com', NULL);
 
 -- --------------------------------------------------------
 
@@ -236,11 +235,8 @@ INSERT INTO `usuariorol` (`idusuario`, `idrol`) VALUES
 (1, 1),
 (1, 2),
 (1, 3),
-(2, 1),
 (2, 2),
-(2, 3),
-(3, 2),
-(4, 3);
+(3, 3);
 
 --
 -- Índices para tablas volcadas

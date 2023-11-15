@@ -125,7 +125,25 @@
     </table>
     <div id="toolbar2">
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUsuarioRol()">Nueva relación Usuario-Rol</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUsuarioRol()">Editar relación Usuario-Rol</a>
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUsuarioRol()">Eliminar relación Usuario-Rol</a>
+    </div>
+
+    <div id="dlg5" class="easyui-dialog" style="width:400px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg5-buttons'">
+        <form id="fm5" method="post" novalidate style="margin:0;padding:20px 50px">
+            <h3>Informacion del UsuarioRol</h3>
+            <div>
+                <input type="hidden" name="idusuario" value="idusuario">
+            </div>
+            <div style="margin-bottom:10px">
+                <label for="idrol">Id Rol:</label>
+                <input name="idrol" class="easyui-numberbox" required="true" style="width:100%">
+            </div>
+        </form>
+    </div>
+    <div id="dlg5-buttons">
+        <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveUsuarioRolEdit()" style="width:90px">Guardar</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg5').dialog('close')" style="width:90px">Cancelar</a>
     </div>
 
     <div id="dlg2" class="easyui-dialog" style="width:400px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg2-buttons'">
