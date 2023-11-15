@@ -11,7 +11,7 @@
         foreach($arregloItemsCargar as $item){
             $productoCarga = $item -> getObjProducto();
             $cantidadDisponible = ($productoCarga -> getProcantstock())-($item -> getCicantidad());
-            if ($cantidadDisponible < 0){
+            if ($cantidadDisponible == 0){
                 $sinStock = true;
                 //Elimino el producto sin stock del carrito
                 $objAbmCompraItem -> baja(['idcompraitem' => $item -> getIdcompraitem()]);

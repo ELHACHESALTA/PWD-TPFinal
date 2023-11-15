@@ -57,6 +57,8 @@ if ($datos["idcompraestadotipo"] <= 3 && $datos["idcompraestadotipo"] > 0){
                                 $respuesta["errorMsg"] = "No se pudo actualizar el stock";    
                             }
                         }
+                    } else {
+                        $respuesta["respuesta"] = "Se canceló la compra pero no tenía items";
                     }
                 } else {
                     $respuesta["errorMsg"] = "No se pudo cancelar la compra";    

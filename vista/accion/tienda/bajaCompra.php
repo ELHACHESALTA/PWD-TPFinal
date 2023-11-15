@@ -12,6 +12,8 @@
                 $objAbmCompraItem -> baja(['idcompraitem' => $item -> getIdcompraitem()]);
             }
             $objAbmCompra -> baja(['idcompra'=>$arregloObjCompra[0] -> getIdcompra()]);
+        } else {
+            $objAbmCompra -> baja(['idcompra'=>$arregloObjCompra[0] -> getIdcompra()]);
         }
     }
     header("Location:../../paginas/tienda.php");
