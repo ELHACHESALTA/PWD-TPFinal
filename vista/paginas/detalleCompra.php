@@ -6,7 +6,10 @@ include_once("../estructura/encabezadoPrivado.php");
 // Verifica que el usuario tenga los permisos de rol correspondientes.
 $permiso = false;
 foreach ($arregloMenu as $menu){
-    if ($rolActivo -> getIdrol() == 3 || $rolActivo -> getIdrol() == 1 || $rolActivo -> getIdrol() == 2) {
+    $idMenuYSubmenu = $menu -> getObjMenu() -> getIdmenu();
+    $objAbmMenuRol2 = new AbmMenuRol();
+    $arregloObjMenuRol2 = $objAbmMenuRol2 -> buscar(['idmenu' => $idMenuYSubmenu]);
+    if ($rolActivo -> getIdrol() == $arregloObjMenuRol2[0] -> getObjRol() -> getIdrol()) {
         $permiso = true;
     }
 }
@@ -21,6 +24,8 @@ if ($rolActivo -> getIdrol() == 3) {
     echo "<a class='btn btn-lg btn-dark text-center text-white float-start position-absolute d-flex justify-content-start mt-2' href='gestionComprasDeposito.php'><i class='bi bi-arrow-90deg-left'></i></a>";
 } elseif ($rolActivo -> getIdrol() == 1) {
     echo "<a class='btn btn-lg btn-dark text-center text-white float-start position-absolute d-flex justify-content-start mt-2' href='gestionCompras.php'><i class='bi bi-arrow-90deg-left'></i></a>";
+} else {
+    echo "<a class='btn btn-lg btn-dark text-center text-white float-start position-absolute d-flex justify-content-start mt-2' href='inicio.php'><i class='bi bi-arrow-90deg-left'></i></a>";
 }
 ?>
 <h1 class="display-5 pb-3 fw-bold">Detalle Compra</h1>
