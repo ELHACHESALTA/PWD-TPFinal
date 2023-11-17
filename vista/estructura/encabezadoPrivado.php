@@ -60,6 +60,68 @@
             } else { // Si no existen roles para la sesión actual se cierra la sesión.
                 header("Location:../accion/cerrarSesion.php");
             }
+
+            $ruta1 = $_SERVER['PHP_SELF'];
+            $ruta1 = explode("/" ,$ruta1);
+            $ruta2 = $ruta1[count($ruta1)-1];
+            $ruta2 = explode(".", $ruta2);
+        
+            if (isset($arregloSubMenu)) {
+                $i = 0;
+                $subMenuDeshabilitado = false;
+                while (($i < count($arregloSubMenu)) && (!$subMenuDeshabilitado)) {
+                    $subMenuActual = $arregloSubMenu[$i];
+                    // Verifica que el submenú se encuentre habilitado.
+                    if ($subMenuActual -> getMedeshabilitado() != 'null') {
+                        $subMenuDeshabilitado = true;
+                    }
+                    $i++;
+                }
+                $i = 0;
+                $existeSubMenu = false;
+                $existeSubMenuTienda = false;
+                while (($i < count($arregloSubMenu)) && (!$existeSubMenu)) {
+                    $subMenuActual = $arregloSubMenu[$i];
+                    // Verifica si el submenú existe.
+                    if ($subMenuActual -> getMedescripcion() == $ruta2[0]) {
+                        $existeSubMenu = true;
+                    }
+                    if ($subMenuActual -> getMedescripcion() == "tienda") {
+                        $existeSubMenuTienda = true;
+                    }
+                    $i++;
+                }
+            }
+            // Verifica que el usuario tenga los permisos de rol correspondientes.
+            $permiso = false;
+            foreach ($arregloMenu as $menu){
+                $idMenuYSubmenu = $menu -> getObjMenu() -> getIdmenu();
+                $objAbmMenuRol2 = new AbmMenuRol();
+                $arregloObjMenuRol2 = $objAbmMenuRol2 -> buscar(['idmenu' => $idMenuYSubmenu]);
+                if (($menu -> getObjMenu() -> getMedescripcion() == $ruta2[0]) && ($menu -> getObjMenu() -> getMedeshabilitado() == NULL) && $rolActivo -> getIdrol() == $arregloObjMenuRol2[0] -> getObjRol() -> getIdrol()) {
+                    $permiso = true;
+                }
+            }
+            // Verifica que el usuario tenga los permisos de rol correspondientes (en detalleCompra.php).
+            $permiso2 = false;
+            foreach ($arregloMenu as $menu){
+                $idMenuYSubmenu = $menu -> getObjMenu() -> getIdmenu();
+                $objAbmMenuRol2 = new AbmMenuRol();
+                $arregloObjMenuRol2 = $objAbmMenuRol2 -> buscar(['idmenu' => $idMenuYSubmenu]);
+                if ($rolActivo -> getIdrol() == $arregloObjMenuRol2[0] -> getObjRol() -> getIdrol()) {
+                    $permiso2 = true;
+                }
+            }
+            // Verifica que el usuario tenga los permisos de rol correspondientes (en producto.php).
+            $permiso3 = false;
+            foreach ($arregloMenu as $menu){
+                $idMenuYSubmenu = $menu -> getObjMenu() -> getIdmenu();
+                $objAbmMenuRol2 = new AbmMenuRol();
+                $arregloObjMenuRol2 = $objAbmMenuRol2 -> buscar(['idmenu' => $idMenuYSubmenu]);
+                if (($menu -> getObjMenu() -> getMedescripcion() == "tienda") && ($menu -> getObjMenu() -> getMedeshabilitado() == NULL) && $rolActivo -> getIdrol() == $arregloObjMenuRol2[0] -> getObjRol() -> getIdrol()) {
+                    $permiso3 = true;
+                }
+            }
         ?>
 
         <header> <!-- Barra Superior INICIO -->

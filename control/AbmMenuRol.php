@@ -123,6 +123,44 @@
             $arreglo = $objMenuRol -> listar($where);
             return $arreglo;
         }
+
+        public function crearMenuRol($param) {
+            $objAbmMenu = new AbmMenu();
+            $objAbmRol = new AbmRol();
+            $arreglo1["idmenu"] = $param["idmenu"]; 
+            $arreglo2["idrol"] = $param["idrol"];
+            if ($objAbmMenu->buscar($arreglo1)){
+                if ($objAbmRol->buscar($arreglo2)){
+                    if ($this->buscar($param)){
+                        $respuesta["errorMsg"] = "Ya existe un MenuRol con ese idmenu e idrol";
+                    } else {
+                        if($this->alta($param)){
+                            $respuesta["respuesta"] = "Se dio de alta el MenuRol correctamente";
+                        } else {
+                            $respuesta["errorMsg"] = "No se pudo realizar el alta del MenuRol";
+                        }
+                    }   
+                } else {
+                    $respuesta["errorMsg"] = "No existe un Rol con el idrol ingresado";
+                }
+            } else {
+                $respuesta["errorMsg"] = "No existe un Menú con el idmenu ingresado";
+            }
+            return $respuesta;
+        }
+
+        public function listarMenuRoles() {
+            $listaMenuRoles = $this->buscar(null);
+            $arregloSalida = array();
+            foreach ($listaMenuRoles as $elemento) {
+                $nuevoElemento['idmenu'] = $elemento->getObjMenu()->getIdmenu();
+                $nuevoElemento['menombre'] = $elemento->getObjMenu()->getMenombre();
+                $nuevoElemento['idrol'] = $elemento->getObjRol()->getIdrol();
+                $nuevoElemento['rodescripcion'] = $elemento->getObjRol()->getRodescripcion();
+                array_push($arregloSalida, $nuevoElemento);
+            }
+            return $arregloSalida;
+        }
     }
 
 ?>

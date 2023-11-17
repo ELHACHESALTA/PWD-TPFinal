@@ -120,6 +120,60 @@
             $arreglo = $objMenu -> listar($where);
             return $arreglo;
         }
+
+        public function crearMenu($param) {
+            $arreglo["idmenu"] = $param["idpadre"];
+            $param["medeshabilitado"] = null;
+            if ($this->buscar($arreglo)){
+                if($this->alta($param)){
+                    $respuesta["respuesta"] = "Se dio de alta el Menú correctamente";
+                } else {
+                    $respuesta["errorMsg"] = "No se pudo realizar el alta del Menú";
+                }    
+            } else {
+                $respuesta["errorMsg"] = "No existe un Menú con el idpadre ingresado";
+            }
+            return $respuesta;
+        }
+
+        public function editarMenues($param) {
+            $arreglo["idmenu"] = $param["idmenu"];
+            $listaMenues = $this->buscar($arreglo);
+            $param["medeshabilitado"] = $listaMenues[0]->getMedeshabilitado();
+            $arreglo1["idmenu"] = $param["idpadre"];
+            if ($this->buscar($arreglo1)){
+                if($this->modificacion($param)){
+                    $respuesta["respuesta"] = "Se modificó el Menú correctamente";
+                } else { 
+                    $respuesta["errorMsg"] = "No se pudo modificar el Menú";
+                }    
+            } else {
+                $respuesta["errorMsg"] = "No existe un Menú con el idpadre ingresado";
+            }
+            return $respuesta;
+        }
+
+        public function listarMenues() {
+            $listaMenues = $this->buscar(null);
+            $arregloSalida = array();
+            foreach ($listaMenues as $elemento) {
+                $nuevoElemento['idmenu'] = $elemento->getIdmenu();
+                $nuevoElemento['menombre'] = $elemento->getMenombre();
+                $nuevoElemento['medescripcion'] = $elemento->getMedescripcion();
+                if ($elemento -> getObjMenu() != NULL) {
+                    $nuevoElemento['idpadre'] = $elemento->getObjMenu()->getIdmenu();
+                } else {
+                    $nuevoElemento['idpadre'] = NULL;
+                }
+                if ($elemento->getMedeshabilitado() == null || $elemento->getMedeshabilitado() == "0000-00-00 00:00:00"){
+                $nuevoElemento['medeshabilitado'] = "Habilitado";
+                } else {
+                $nuevoElemento['medeshabilitado'] = "Deshabilitado (" . $elemento->getMedeshabilitado() . ")";
+                }
+                array_push($arregloSalida, $nuevoElemento);
+            }
+            return $arregloSalida;
+        }
     }
 
 ?>

@@ -120,6 +120,77 @@
             $arreglo = $objCompraItem -> listar($where);
             return $arreglo;
         }
+
+        public function eliminarItemDeCompra($param) {
+            $arregloObjCompraItem = $this -> buscar(['idcompraitem' => $param['idcompraitem']]);
+            $idCompraActual = $arregloObjCompraItem[0] -> getObjCompra() -> getIdcompra();
+            $this -> baja(['idcompraitem' => $param['idcompraitem']]);
+            $arregloObjCompraItem = $this -> buscar(['idcompra' => $idCompraActual]);
+            if ($arregloObjCompraItem == []) {
+                $objAbmCompra = new AbmCompra();
+                $objAbmCompra -> baja(['idcompra' => $idCompraActual]);
+            }
+        }
+
+        public function eliminarCompraItem($param) {
+            $arreglo["idcompra"] = $param["idcompra"];
+            $arreglo1["idcompraitem"] = $param["idcompraitem"];
+            $objAbmCompraEstado = new AbmCompraEstado();
+            $listaCompraEstado = $objAbmCompraEstado->buscar(null);
+            $estadoMasAvanzado = 0;
+            for($i=0; $i < count($listaCompraEstado); $i++){
+                if ($listaCompraEstado[$i]->getObjCompraEstadoTipo()->getIdcompraestadotipo() > $estadoMasAvanzado
+                && $listaCompraEstado[$i]->getObjCompra()->getIdcompra() == $param["idcompra"]){
+                    $estadoMasAvanzado = $listaCompraEstado[$i]->getObjCompraEstadoTipo()->getIdcompraestadotipo();
+                }
+            }
+            if ($estadoMasAvanzado == 1){
+                $objAbmCompraItem1 = new AbmCompraItem();
+                $arregloObjCompraItem = $objAbmCompraItem1 -> buscar($arreglo1);
+                $cantidadDevolver = $arregloObjCompraItem[0] -> getCicantidad();
+                $objAbmProducto = new AbmProducto();
+                $idProductoDevolver = $arregloObjCompraItem[0] -> getObjProducto() -> getIdproducto();
+                $arregloObjProducto = $objAbmProducto -> buscar(['idproducto' => $idProductoDevolver]);
+                $cantidadActual = $arregloObjProducto[0] -> getProcantstock();
+                $nuevaCantidad = $cantidadActual + $cantidadDevolver;
+
+                $productoModificado['idproducto'] = $idProductoDevolver;
+                $productoModificado['pronombre'] = $arregloObjProducto[0] -> getPronombre();
+                $productoModificado['prodetalle'] = $arregloObjProducto[0] -> getProdetalle();
+                $productoModificado['procantstock'] = $nuevaCantidad;
+                $productoModificado['proprecio'] = $arregloObjProducto[0] -> getProPrecio();
+                $productoModificado['prodeshabilitado'] = $arregloObjProducto[0] -> getProdeshabilitado();
+                if ($this->baja($arreglo1)){
+                    if ($objAbmProducto -> modificacion($productoModificado)) {
+                        $respuesta["respuesta"] = "La compraItem se dio de baja correctamente y se devolvieron los articulos al stock";
+                    } else {
+                        $respuesta["errorMsg"] = "No se pudo dar de baja la compraItem";
+                    }
+                } else {
+                    $respuesta["errorMsg"] = "No se pudo dar de baja la compraItem";
+                }
+            } else {
+                $respuesta["errorMsg"] = "Solo se pueden eliminar items cuando el estado de la compra es 'iniciada'";
+            }
+            return $respuesta;
+        }
+
+        public function listarCompraItem() {
+            $listaCompraItem = $this->buscar(null);
+            $arregloSalida = array(); 
+            foreach ($listaCompraItem as $elemento) {
+                if ($elemento -> getObjCompra() -> getMetodo() == 'normal') {
+                    $nuevoElemento['idcompraitem'] = $elemento->getIdcompraitem();
+                    $nuevoElemento['idproducto'] = $elemento->getObjProducto()->getIdproducto();
+                    $nuevoElemento['pronombre'] = $elemento->getObjProducto()->getPronombre();
+                    $nuevoElemento['cicantidad'] = $elemento->getCicantidad();
+                    $nuevoElemento['idcompra'] = $elemento->getObjCompra()->getIdcompra();
+                    $nuevoElemento['usnombre'] = $elemento->getObjCompra()->getObjUsuario()->getUsnombre();
+                    array_push($arregloSalida, $nuevoElemento);
+                }
+            }
+            return $arregloSalida;
+        }
     }
 
 ?>

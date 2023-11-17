@@ -3,38 +3,6 @@
     $tituloPagina = "Seguimiento";
     include_once("../estructura/encabezadoPrivado.php");
 
-    if (isset($arregloSubMenu)) {
-        $i = 0;
-        $subMenuDeshabilitado = false;
-        while (($i < count($arregloSubMenu)) && (!$subMenuDeshabilitado)) {
-            $subMenuActual = $arregloSubMenu[$i];
-            // Verifica que el submenú se encuentre habilitado.
-            if ($subMenuActual -> getMedeshabilitado() != 'null') {
-                $subMenuDeshabilitado = true;
-            }
-            $i++;
-        }
-        $i = 0;
-        $existeSubMenu = false;
-        while (($i < count($arregloSubMenu)) && (!$existeSubMenu)) {
-            $subMenuActual = $arregloSubMenu[$i];
-            // Verifica si el submenú existe.
-            if ($subMenuActual -> getMedescripcion() == "seguimiento") {
-                $existeSubMenu = true;
-            }
-            $i++;
-        }
-    }
-    // Verifica que el usuario tenga los permisos de rol correspondientes.
-    $permiso = false;
-    foreach ($arregloMenu as $menu){
-        $idMenuYSubmenu = $menu -> getObjMenu() -> getIdmenu();
-        $objAbmMenuRol2 = new AbmMenuRol();
-        $arregloObjMenuRol2 = $objAbmMenuRol2 -> buscar(['idmenu' => $idMenuYSubmenu]);
-        if (($menu -> getObjMenu() -> getMedescripcion() == "seguimiento") && ($menu -> getObjMenu() -> getMedeshabilitado() == NULL) && $rolActivo -> getIdrol() == $arregloObjMenuRol2[0] -> getObjRol() -> getIdrol()) {
-            $permiso = true;
-        }
-    }
     if (!$permiso) {
         echo "<a class='btn btn-lg btn-dark text-center text-white float-start position-absolute d-flex justify-content-start mt-2' href='inicio.php'><i class='bi bi-arrow-90deg-left'></i></a>";
         echo "<br><br><br><h1 class='display-5 pb-3 fw-bold'>No puede acceder al seguimiento de la compra ya que no tiene los permisos necesarios en su rol o el menú se encuentra deshabilitado.</h1>";

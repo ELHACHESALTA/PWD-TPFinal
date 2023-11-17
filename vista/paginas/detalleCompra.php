@@ -3,17 +3,7 @@ include_once("../../configuracion.php");
 $tituloPagina = "Detalle de la Compra";
 include_once("../estructura/encabezadoPrivado.php");
 
-// Verifica que el usuario tenga los permisos de rol correspondientes.
-$permiso = false;
-foreach ($arregloMenu as $menu){
-    $idMenuYSubmenu = $menu -> getObjMenu() -> getIdmenu();
-    $objAbmMenuRol2 = new AbmMenuRol();
-    $arregloObjMenuRol2 = $objAbmMenuRol2 -> buscar(['idmenu' => $idMenuYSubmenu]);
-    if ($rolActivo -> getIdrol() == $arregloObjMenuRol2[0] -> getObjRol() -> getIdrol()) {
-        $permiso = true;
-    }
-}
-if (!$permiso) {
+if (!$permiso2) {
     echo "<a class='btn btn-lg btn-dark text-center text-white float-start position-absolute d-flex justify-content-start mt-2' href='inicio.php'><i class='bi bi-arrow-90deg-left'></i></a>";
     echo "<br><br><br><h1 class='display-5 pb-3 fw-bold'>No puede acceder al detalle de la compra ya que no tiene los permisos necesarios en su rol o el menú se encuentra deshabilitado.</h1>";
 } else {

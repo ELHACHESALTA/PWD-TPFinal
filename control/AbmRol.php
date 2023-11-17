@@ -108,6 +108,32 @@
             $arreglo = $objRol -> listar($where);
             return $arreglo;
         }
+
+        public function eliminarRol($param) {
+            $objAbmUsuarioRol = new AbmUsuarioRol();
+            $objAbmMenuRol = new AbmMenuRol();
+            if ($objAbmUsuarioRol->buscar($param) || $objAbmMenuRol->buscar($param)){
+                $respuesta["errorMsg"] = "No se pudo dar de baja el rol debido a que existe un UsuarioRol o un MenuRol con ese id.";
+            } else {
+                if($this->baja($param)){
+                    $respuesta["respuesta"] = "Se dio de baja el Rol correctamente!";
+                } else {
+                    $respuesta["errorMsg"] = "No se pudo dar de baja el Rol";
+                }    
+            }
+            return $respuesta;
+        }
+
+        public function listarRoles() {
+            $listaRoles = $this->buscar(null);
+            $arregloSalida = array();
+            foreach ($listaRoles as $elemento) {
+                $nuevoElemento['idrol'] = $elemento->getIdrol();
+                $nuevoElemento['rodescripcion'] = $elemento->getRodescripcion();
+                array_push($arregloSalida, $nuevoElemento);
+            }
+            return $arregloSalida;
+        }
     }
 
 ?>
